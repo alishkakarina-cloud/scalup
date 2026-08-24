@@ -1,0 +1,169 @@
+import type { Product, ServiceCategory, ServicePlaceholder, Sto } from "../types";
+
+export const categories = [
+  { name: "Запчасти", icon: "Cog" },
+  { name: "Масла", icon: "Droplet" },
+  { name: "Шины", icon: "CircleDot" },
+  { name: "СТО", icon: "Wrench" },
+  { name: "Кондиционер", icon: "Snowflake" },
+  { name: "Замена масла", icon: "Droplets" },
+  { name: "Эвакуатор", icon: "Truck" },
+  { name: "Детейлинг", icon: "Sparkles" },
+] as const;
+
+export const garageOffers = [
+  { label: "Масло от", price: 40 },
+  { label: "Замена масла от", price: 28 },
+  { label: "Диагностика от", price: 9 },
+];
+
+export const districts = ["Центр", "Восток-5", "Джал", "Аламедин", "Асанбай"];
+export const carBrands = ["Toyota", "Hyundai", "Kia", "Honda", "Volkswagen", "Chevrolet"];
+
+export const products: Product[] = [
+  {
+    id: "p1",
+    name: "Масляный фильтр Bosch",
+    category: "Запчасти",
+    price: 12,
+    shop: "Автозапчасти Плюс",
+    district: "Центр",
+    inStock: true,
+    delivery: true,
+    pickup: true,
+    brandFit: "Toyota",
+    icon: "Filter",
+  },
+  {
+    id: "p2",
+    name: "Моторное масло Shell Helix 5W-30, 4л",
+    category: "Масла",
+    price: 42,
+    shop: "АвтоМасла24",
+    district: "Джал",
+    inStock: true,
+    delivery: false,
+    pickup: true,
+    brandFit: "Универсальное",
+    icon: "Droplet",
+  },
+  {
+    id: "p3",
+    name: "Тормозные колодки передние",
+    category: "Запчасти",
+    price: 35,
+    shop: "СТО Мастер",
+    district: "Восток-5",
+    inStock: false,
+    delivery: true,
+    pickup: false,
+    brandFit: "Hyundai",
+    icon: "Disc",
+  },
+  {
+    id: "p4",
+    name: "Шины Michelin 205/55 R16",
+    category: "Шины",
+    price: 95,
+    shop: "ШинМонтаж Центр",
+    district: "Центр",
+    inStock: true,
+    delivery: false,
+    pickup: true,
+    brandFit: "Универсальное",
+    icon: "CircleDot",
+  },
+  {
+    id: "p5",
+    name: "Аккумулятор Bosch 60Ah",
+    category: "Запчасти",
+    price: 78,
+    shop: "АвтоЭлектрика",
+    district: "Аламедин",
+    inStock: true,
+    delivery: true,
+    pickup: true,
+    brandFit: "Универсальное",
+    icon: "BatteryFull",
+  },
+  {
+    id: "p6",
+    name: "Свечи зажигания NGK, 4 шт.",
+    category: "Запчасти",
+    price: 18,
+    shop: "Автозапчасти Плюс",
+    district: "Центр",
+    inStock: true,
+    delivery: true,
+    pickup: false,
+    brandFit: "Toyota / Honda",
+    icon: "Zap",
+  },
+  {
+    id: "p7",
+    name: "Антифриз G12, 5л",
+    category: "Масла",
+    price: 15,
+    shop: "АвтоМасла24",
+    district: "Джал",
+    inStock: true,
+    delivery: false,
+    pickup: true,
+    brandFit: "Универсальное",
+    icon: "Thermometer",
+  },
+  {
+    id: "p8",
+    name: "Дворники бескаркасные, пара",
+    category: "Запчасти",
+    price: 10,
+    shop: "АвтоАксессуары",
+    district: "Асанбай",
+    inStock: true,
+    delivery: true,
+    pickup: true,
+    brandFit: "Универсальное",
+    icon: "CloudRain",
+  },
+];
+
+export const serviceCategories: ServiceCategory[] = [
+  "Замена масла",
+  "Диагностика",
+  "Ходовая",
+  "Кондиционер",
+  "Шиномонтаж",
+  "Мойка",
+  "Детейлинг",
+  "Эвакуатор",
+];
+
+export const servicePlaceholders: ServicePlaceholder[] = [
+  { id: "s1", category: "Замена масла" },
+  { id: "s2", category: "Диагностика" },
+  { id: "s3", category: "Ходовая" },
+  { id: "s4", category: "Шиномонтаж" },
+];
+
+export const stoList: Sto[] = [
+  {
+    id: "sto1",
+    name: "СТО АвтоМастер",
+    description:
+      "Комплексное обслуживание легковых автомобилей: диагностика, ходовая часть, замена масла и жидкостей.",
+    address: "г. Бишкек, ул. Ахунбаева 123",
+    hours: "Пн–Сб: 09:00–19:00, Вс: выходной",
+    rating: 4.7,
+    services: [
+      { name: "Замена масла", price: 28 },
+      { name: "Диагностика ходовой", price: 15 },
+      { name: "Развал-схождение", price: 22 },
+      { name: "Замена тормозных колодок", price: 20 },
+    ],
+    reviews: [
+      { id: "r1", author: "Азамат", rating: 5, text: "Быстро и аккуратно, цены честные." },
+      { id: "r2", author: "Диана", rating: 4, text: "Хороший сервис, но пришлось немного подождать." },
+      { id: "r3", author: "Марат", rating: 5, text: "Записался онлайн, всё сделали точно в срок." },
+    ],
+  },
+];
