@@ -32,7 +32,7 @@ export function Catalog() {
   const filterPanel = (
     <div className="space-y-6">
       <div>
-        <label className="block text-xs font-bold uppercase tracking-wide text-paper/30 mb-2">
+        <label className="block text-xs font-bold uppercase tracking-wide text-paper/60 mb-2">
           Марка авто
         </label>
         <select value={brand} onChange={(e) => setBrand(e.target.value)} className={selectClass}>
@@ -44,7 +44,7 @@ export function Catalog() {
       </div>
 
       <div>
-        <label className="block text-xs font-bold uppercase tracking-wide text-paper/30 mb-2">
+        <label className="block text-xs font-bold uppercase tracking-wide text-paper/60 mb-2">
           Модель
         </label>
         <select value={model} onChange={(e) => setModel(e.target.value)} className={selectClass}>
@@ -56,7 +56,7 @@ export function Catalog() {
       </div>
 
       <div>
-        <label className="block text-xs font-bold uppercase tracking-wide text-paper/30 mb-2">
+        <label className="block text-xs font-bold uppercase tracking-wide text-paper/60 mb-2">
           Категория
         </label>
         <select value={category} onChange={(e) => setCategory(e.target.value)} className={selectClass}>
@@ -68,7 +68,7 @@ export function Catalog() {
       </div>
 
       <div>
-        <label className="block text-xs font-bold uppercase tracking-wide text-paper/30 mb-2">
+        <label className="block text-xs font-bold uppercase tracking-wide text-paper/60 mb-2">
           Район
         </label>
         <select value={district} onChange={(e) => setDistrict(e.target.value)} className={selectClass}>
@@ -80,7 +80,7 @@ export function Catalog() {
       </div>
 
       <div>
-        <label className="flex items-center justify-between text-xs font-bold uppercase tracking-wide text-paper/30 mb-2">
+        <label className="flex items-center justify-between text-xs font-bold uppercase tracking-wide text-paper/60 mb-2">
           <span>Цена до</span>
           <span className="text-paper normal-case text-sm font-bold">${maxPrice}</span>
         </label>
@@ -112,7 +112,7 @@ export function Catalog() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl sm:text-3xl font-bold text-paper">Каталог товаров</h1>
-          <p className="mt-1 text-paper/50">Найдено: {filtered.length}</p>
+          <p className="mt-1 text-paper/60">Найдено: {filtered.length}</p>
         </div>
         <button
           onClick={() => setFiltersOpen(true)}
@@ -130,12 +130,14 @@ export function Catalog() {
 
         {filtered.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5">
-            {filtered.map((p) => (
-              <ProductCard key={p.id} product={p} />
+            {filtered.map((p, i) => (
+              <div key={p.id} className="reveal h-full" style={{ animationDelay: `${Math.min(i, 8) * 40}ms` }}>
+                <ProductCard product={p} />
+              </div>
             ))}
           </div>
         ) : (
-          <div className="rounded-2xl border border-dashed border-paper/15 p-12 text-center text-paper/40">
+          <div className="rounded-2xl border border-dashed border-paper/15 p-12 text-center text-paper/60">
             Ничего не найдено по заданным фильтрам.
           </div>
         )}

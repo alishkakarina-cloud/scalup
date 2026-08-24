@@ -35,7 +35,7 @@ export function StoPage() {
                 <h1 className="text-2xl sm:text-3xl font-bold text-paper">{sto.name}</h1>
                 <StarRating rating={sto.rating} />
               </div>
-              <p className="mt-2 text-paper/50 max-w-2xl">{sto.description}</p>
+              <p className="mt-2 text-paper/60 max-w-2xl">{sto.description}</p>
             </div>
             <a
               href="#services"
@@ -50,7 +50,7 @@ export function StoPage() {
             {stats.map((s) => (
               <div key={s.label}>
                 <p className="text-2xl sm:text-3xl font-bold text-lime-500">{s.value}</p>
-                <p className="text-xs text-paper/50 mt-0.5">{s.label}</p>
+                <p className="text-xs text-paper/60 mt-0.5">{s.label}</p>
               </div>
             ))}
           </div>
@@ -62,14 +62,14 @@ export function StoPage() {
           <MapPin size={18} strokeWidth={1.5} className="text-lime-500 shrink-0 mt-0.5" />
           <div>
             <p className="text-sm font-bold text-paper">Адрес</p>
-            <p className="text-sm text-paper/50 mt-0.5">{sto.address}</p>
+            <p className="text-sm text-paper/60 mt-0.5">{sto.address}</p>
           </div>
         </div>
         <div className="rounded-2xl border border-paper/10 bg-ink-900 p-5 flex items-start gap-3">
           <Clock size={18} strokeWidth={1.5} className="text-lime-500 shrink-0 mt-0.5" />
           <div>
             <p className="text-sm font-bold text-paper">График работы</p>
-            <p className="text-sm text-paper/50 mt-0.5">{sto.hours}</p>
+            <p className="text-sm text-paper/60 mt-0.5">{sto.hours}</p>
           </div>
         </div>
       </section>
@@ -81,7 +81,7 @@ export function StoPage() {
             <div key={service.name} className="flex items-center justify-between gap-4 p-4">
               <div>
                 <p className="font-bold text-paper">{service.name}</p>
-                <p className="text-sm text-paper/40">
+                <p className="text-sm text-paper/60">
                   от <span className="text-lime-500 font-bold">${service.price}</span>
                 </p>
               </div>
@@ -115,7 +115,7 @@ export function StoPage() {
                 <p className="font-bold text-paper text-sm">{review.author}</p>
                 <StarRating rating={review.rating} />
               </div>
-              <p className="mt-2 text-sm text-paper/50">{review.text}</p>
+              <p className="mt-2 text-sm text-paper/60">{review.text}</p>
             </div>
           ))}
         </div>

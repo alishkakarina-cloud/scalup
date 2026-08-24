@@ -16,9 +16,11 @@ export function Cart() {
   const [form, setForm] = useState({ name: "", phone: "", comment: "" });
   const [method, setMethod] = useState<FulfillMethod>("pickup");
 
+  const isValid = Boolean(form.name && form.phone && items.length > 0);
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (!form.name || !form.phone || items.length === 0) return;
+    if (!isValid) return;
     setSubmitted(true);
     clear();
   };
@@ -28,7 +30,7 @@ export function Cart() {
       <div className="mx-auto max-w-lg px-4 py-24 text-center">
         <CheckCircle2 size={56} strokeWidth={1.5} className="mx-auto text-lime-500" />
         <h1 className="mt-4 text-2xl font-bold text-paper">Заявка отправлена!</h1>
-        <p className="mt-2 text-paper/50">
+        <p className="mt-2 text-paper/60">
           Мы свяжемся с вами по номеру {form.phone} для подтверждения заказа. Оплата — при получении или по согласованию с продавцом.
         </p>
         <Link
@@ -45,9 +47,9 @@ export function Cart() {
   if (items.length === 0) {
     return (
       <div className="mx-auto max-w-lg px-4 py-24 text-center">
-        <ShoppingCart size={48} strokeWidth={1.5} className="mx-auto text-paper/20" />
+        <ShoppingCart size={48} strokeWidth={1.5} className="mx-auto text-paper/60" />
         <h1 className="mt-4 text-xl font-bold text-paper">Корзина пуста</h1>
-        <p className="mt-2 text-paper/50">Добавьте товары из каталога или запишитесь на услугу в СТО.</p>
+        <p className="mt-2 text-paper/60">Добавьте товары из каталога или запишитесь на услугу в СТО.</p>
         <div className="mt-6 flex justify-center gap-3">
           <Link to="/catalog" className="rounded-xl bg-lime-500 px-5 py-2.5 text-sm font-bold text-ink-950 hover:bg-lime-600 transition-colors">
             Каталог товаров
@@ -70,7 +72,7 @@ export function Cart() {
             <div key={item.id} className="flex items-center gap-4 rounded-2xl border border-paper/10 bg-ink-900 p-4 transition-colors hover:border-paper/20">
               <div className="flex-1 min-w-0">
                 <p className="font-bold text-paper truncate">{item.name}</p>
-                <p className="text-sm text-paper/40">
+                <p className="text-sm text-paper/60">
                   {item.type === "product" ? item.shop : item.stoName}
                 </p>
               </div>
@@ -96,7 +98,7 @@ export function Cart() {
               <p className="w-16 shrink-0 text-right font-bold text-lime-500">${item.price * item.qty}</p>
               <button
                 onClick={() => removeItem(item.id)}
-                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-paper/30 hover:bg-paper/5 hover:text-paper transition-colors"
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-paper/60 hover:bg-paper/5 hover:text-paper transition-colors"
                 aria-label="Удалить"
               >
                 <Trash2 size={15} strokeWidth={1.5} />
@@ -139,7 +141,7 @@ export function Cart() {
                 {car.brand} {car.model}, {car.year} г.
               </div>
             ) : (
-              <Link to="/garage" className="block rounded-xl border border-dashed border-paper/15 px-3.5 py-2.5 text-sm text-paper/40 hover:bg-paper/5">
+              <Link to="/garage" className="block rounded-xl border border-dashed border-paper/15 px-3.5 py-2.5 text-sm text-paper/60 hover:bg-paper/5">
                 Авто не добавлено — добавить в «Моём гараже»
               </Link>
             )}
@@ -171,7 +173,7 @@ export function Cart() {
 
           <div>
             <label className="block text-sm font-bold text-paper/60 mb-1.5">
-              Комментарий <span className="text-paper/30 font-normal">(необязательно)</span>
+              Комментарий <span className="text-paper/60 font-normal">(необязательно)</span>
             </label>
             <textarea
               value={form.comment}
@@ -183,12 +185,13 @@ export function Cart() {
 
           <button
             type="submit"
-            className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl bg-lime-500 py-3 text-sm font-bold text-ink-950 hover:bg-lime-600 transition-colors"
+            disabled={!isValid}
+            className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl bg-lime-500 py-3 text-sm font-bold text-ink-950 hover:bg-lime-600 transition-colors disabled:bg-paper/10 disabled:text-paper/30 disabled:hover:bg-paper/10"
           >
             Оформить заказ
             <ArrowRight size={15} strokeWidth={2.5} />
           </button>
-          <p className="text-center text-xs text-paper/30">
+          <p className="text-center text-xs text-paper/60">
             Без онлайн-оплаты — это заявка, оператор свяжется с вами.
           </p>
         </form>

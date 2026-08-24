@@ -26,7 +26,7 @@ export function Footer() {
             </Link>
           </nav>
         </div>
-        <p className="mt-8 text-xs text-paper/30">
+        <p className="mt-8 text-xs text-paper/60">
           © {new Date().getFullYear()} SCALUP — макет интерфейса. Все данные тестовые.
         </p>
       </div>

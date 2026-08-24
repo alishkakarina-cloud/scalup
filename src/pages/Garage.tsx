@@ -18,16 +18,18 @@ export function Garage() {
     vin: "",
   });
 
+  const isValid = Boolean(form.model && form.year && form.engine && form.plate);
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (!form.model || !form.year || !form.engine || !form.plate) return;
+    if (!isValid) return;
     setCar({ ...form });
   };
 
   return (
     <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
       <h1 className="text-2xl sm:text-3xl font-bold text-paper">Мой гараж</h1>
-      <p className="mt-2 text-paper/50">
+      <p className="mt-2 text-paper/60">
         Добавьте свой автомобиль, чтобы видеть подходящие товары и услуги.
       </p>
 
@@ -91,7 +93,7 @@ export function Garage() {
           </div>
           <div>
             <label className="block text-sm font-bold text-paper/60 mb-1.5">
-              VIN <span className="text-paper/30 font-normal">(необязательно)</span>
+              VIN <span className="text-paper/60 font-normal">(необязательно)</span>
             </label>
             <input
               value={form.vin}
@@ -104,7 +106,8 @@ export function Garage() {
           <div className="sm:col-span-2 mt-2">
             <button
               type="submit"
-              className="inline-flex items-center gap-1.5 rounded-xl bg-lime-500 px-6 py-3 text-sm font-bold text-ink-950 hover:bg-lime-600 transition-colors"
+              disabled={!isValid}
+              className="inline-flex items-center gap-1.5 rounded-xl bg-lime-500 px-6 py-3 text-sm font-bold text-ink-950 hover:bg-lime-600 transition-colors disabled:bg-paper/10 disabled:text-paper/30 disabled:hover:bg-paper/10"
             >
               Добавить автомобиль
               <ArrowRight size={15} strokeWidth={2.5} />
@@ -120,15 +123,15 @@ export function Garage() {
               </span>
               <div>
                 <h3 className="text-lg font-bold text-paper">{car.brand} {car.model}</h3>
-                <p className="text-sm text-paper/50">
+                <p className="text-sm text-paper/60">
                   {car.year} г. · {car.engine} · Госномер {car.plate}
                 </p>
-                {car.vin && <p className="text-xs text-paper/30 mt-0.5">VIN: {car.vin}</p>}
+                {car.vin && <p className="text-xs text-paper/60 mt-0.5">VIN: {car.vin}</p>}
               </div>
             </div>
             <button
               onClick={clearCar}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-paper/15 text-paper/50 hover:bg-paper/5 transition-colors shrink-0"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-paper/15 text-paper/60 hover:bg-paper/5 transition-colors shrink-0"
               aria-label="Удалить автомобиль"
             >
               <Trash2 size={16} strokeWidth={1.5} />
@@ -143,7 +146,7 @@ export function Garage() {
                   key={offer.label}
                   className="rounded-2xl border border-paper/10 bg-ink-900 p-5 transition-all hover:border-lime-500/30 hover:shadow-[0_0_32px_-10px_rgba(183,229,0,0.35)]"
                 >
-                  <p className="text-sm text-paper/50">{offer.label}</p>
+                  <p className="text-sm text-paper/60">{offer.label}</p>
                   <p className="mt-1 text-2xl font-bold text-lime-500">${offer.price}</p>
                 </div>
               ))}
