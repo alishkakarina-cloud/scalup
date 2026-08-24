@@ -3,7 +3,7 @@ import { Wrench, ArrowRight } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="mt-16 bg-ink-950 border-t border-white/10 text-paper/60">
+    <footer className="mt-16 bg-ink-950 border-t border-paper/10 text-paper/60">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <Link to="/" className="flex items-center gap-2">

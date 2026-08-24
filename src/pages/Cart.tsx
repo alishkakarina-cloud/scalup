@@ -7,7 +7,7 @@ import { useGarage } from "../context/GarageContext";
 type FulfillMethod = "delivery" | "pickup";
 
 const inputClass =
-  "w-full rounded-xl border border-white/15 bg-white/[0.03] px-3.5 py-2.5 text-sm text-paper outline-none focus:border-lime-500 transition-colors";
+  "w-full rounded-xl border border-paper/15 bg-paper/[0.03] px-3.5 py-2.5 text-sm text-paper outline-none focus:border-lime-500 transition-colors";
 
 export function Cart() {
   const { items, removeItem, updateQty, total, clear } = useCart();
@@ -52,7 +52,7 @@ export function Cart() {
           <Link to="/catalog" className="rounded-xl bg-lime-500 px-5 py-2.5 text-sm font-bold text-ink-950 hover:bg-lime-600 transition-colors">
             Каталог товаров
           </Link>
-          <Link to="/services" className="rounded-xl border border-white/15 px-5 py-2.5 text-sm font-bold text-paper hover:bg-white/5 transition-colors">
+          <Link to="/services" className="rounded-xl border border-paper/15 px-5 py-2.5 text-sm font-bold text-paper hover:bg-paper/5 transition-colors">
             Услуги СТО
           </Link>
         </div>
@@ -67,7 +67,7 @@ export function Cart() {
       <div className="mt-8 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8">
         <div className="space-y-3">
           {items.map((item) => (
-            <div key={item.id} className="flex items-center gap-4 rounded-2xl border border-white/10 bg-ink-900 p-4 transition-colors hover:border-white/20">
+            <div key={item.id} className="flex items-center gap-4 rounded-2xl border border-paper/10 bg-ink-900 p-4 transition-colors hover:border-paper/20">
               <div className="flex-1 min-w-0">
                 <p className="font-bold text-paper truncate">{item.name}</p>
                 <p className="text-sm text-paper/40">
@@ -78,7 +78,7 @@ export function Cart() {
                 <div className="flex items-center gap-2 shrink-0">
                   <button
                     onClick={() => updateQty(item.id, item.qty - 1)}
-                    className="flex h-7 w-7 items-center justify-center rounded-full border border-white/15 text-paper/60"
+                    className="flex h-7 w-7 items-center justify-center rounded-full border border-paper/15 text-paper/60"
                     aria-label="Уменьшить количество"
                   >
                     <Minus size={13} strokeWidth={1.5} />
@@ -86,7 +86,7 @@ export function Cart() {
                   <span className="w-5 text-center text-sm font-bold text-paper">{item.qty}</span>
                   <button
                     onClick={() => updateQty(item.id, item.qty + 1)}
-                    className="flex h-7 w-7 items-center justify-center rounded-full border border-white/15 text-paper/60"
+                    className="flex h-7 w-7 items-center justify-center rounded-full border border-paper/15 text-paper/60"
                     aria-label="Увеличить количество"
                   >
                     <Plus size={13} strokeWidth={1.5} />
@@ -96,7 +96,7 @@ export function Cart() {
               <p className="w-16 shrink-0 text-right font-bold text-lime-500">${item.price * item.qty}</p>
               <button
                 onClick={() => removeItem(item.id)}
-                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-paper/30 hover:bg-white/5 hover:text-paper transition-colors"
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-paper/30 hover:bg-paper/5 hover:text-paper transition-colors"
                 aria-label="Удалить"
               >
                 <Trash2 size={15} strokeWidth={1.5} />
@@ -105,7 +105,7 @@ export function Cart() {
           ))}
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-white/10 bg-ink-900 p-5 h-fit">
+        <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-paper/10 bg-ink-900 p-5 h-fit">
           <div className="flex items-center justify-between text-lg">
             <span className="font-bold text-paper">Итого</span>
             <span className="text-xl font-bold text-lime-500">${total}</span>
@@ -135,11 +135,11 @@ export function Cart() {
           <div>
             <label className="block text-sm font-bold text-paper/60 mb-1.5">Автомобиль</label>
             {car ? (
-              <div className="rounded-xl border border-white/10 bg-white/[0.03] px-3.5 py-2.5 text-sm text-paper">
+              <div className="rounded-xl border border-paper/10 bg-paper/[0.03] px-3.5 py-2.5 text-sm text-paper">
                 {car.brand} {car.model}, {car.year} г.
               </div>
             ) : (
-              <Link to="/garage" className="block rounded-xl border border-dashed border-white/15 px-3.5 py-2.5 text-sm text-paper/40 hover:bg-white/5">
+              <Link to="/garage" className="block rounded-xl border border-dashed border-paper/15 px-3.5 py-2.5 text-sm text-paper/40 hover:bg-paper/5">
                 Авто не добавлено — добавить в «Моём гараже»
               </Link>
             )}
@@ -152,7 +152,7 @@ export function Cart() {
                 type="button"
                 onClick={() => setMethod("pickup")}
                 className={`flex-1 rounded-xl border py-2 text-sm font-bold transition-colors ${
-                  method === "pickup" ? "border-lime-500 bg-lime-500/10 text-lime-500" : "border-white/15 text-paper/60"
+                  method === "pickup" ? "border-lime-500 bg-lime-500/10 text-lime-500" : "border-paper/15 text-paper/60"
                 }`}
               >
                 Самовывоз
@@ -161,7 +161,7 @@ export function Cart() {
                 type="button"
                 onClick={() => setMethod("delivery")}
                 className={`flex-1 rounded-xl border py-2 text-sm font-bold transition-colors ${
-                  method === "delivery" ? "border-lime-500 bg-lime-500/10 text-lime-500" : "border-white/15 text-paper/60"
+                  method === "delivery" ? "border-lime-500 bg-lime-500/10 text-lime-500" : "border-paper/15 text-paper/60"
                 }`}
               >
                 Доставка

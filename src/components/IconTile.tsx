@@ -16,7 +16,7 @@ export function IconTile({
 
   return (
     <div
-      className={`flex items-center justify-center rounded-xl border border-white/5 bg-white/[0.03] text-paper/40 ${className}`}
+      className={`flex items-center justify-center rounded-xl border border-paper/5 bg-paper/[0.03] text-paper/40 ${className}`}
     >
       <IconComponent size={size} strokeWidth={1.5} />
     </div>

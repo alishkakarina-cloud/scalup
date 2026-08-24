@@ -20,7 +20,7 @@ export function Services() {
             className={`rounded-full px-4 py-2 text-sm font-bold transition-colors ${
               active === cat
                 ? "bg-lime-500 text-ink-950"
-                : "border border-white/15 text-paper/60 hover:bg-white/5"
+                : "border border-paper/15 text-paper/60 hover:bg-paper/5"
             }`}
           >
             {cat}
@@ -28,7 +28,7 @@ export function Services() {
         ))}
       </div>
 
-      <div className="mt-8 rounded-2xl border border-white/10 border-l-2 border-l-lime-500 bg-ink-900 px-4 py-3 text-sm text-paper/60">
+      <div className="mt-8 rounded-2xl border border-paper/10 border-l-2 border-l-lime-500 bg-ink-900 px-4 py-3 text-sm text-paper/60">
         Раздел «{active}» пока в разработке — партнёры СТО добавят свои услуги позже.
         Ниже показан пример структуры карточки услуги.
       </div>

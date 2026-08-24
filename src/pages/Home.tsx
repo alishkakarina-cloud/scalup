@@ -40,7 +40,7 @@ export function Home() {
                   <input
                     type="text"
                     placeholder="Что ищете? Запчасть, масло, СТО, услугу"
-                    className="w-full rounded-xl border border-white/15 bg-white/[0.03] pl-11 pr-4 py-3.5 text-sm text-paper placeholder:text-paper/30 outline-none focus:border-lime-500 transition-colors"
+                    className="w-full rounded-xl border border-paper/15 bg-paper/[0.03] pl-11 pr-4 py-3.5 text-sm text-paper placeholder:text-paper/30 outline-none focus:border-lime-500 transition-colors"
                   />
                 </label>
                 <Link
@@ -53,10 +53,10 @@ export function Home() {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-white/10 bg-ink-900 p-5 shrink-0">
+            <div className="rounded-2xl border border-paper/10 bg-ink-900 p-5 shrink-0">
               <p className="text-3xl sm:text-4xl font-bold text-lime-500">1500+</p>
               <p className="mt-1 text-sm text-paper/50">автомобилей в базе подбора</p>
-              <span className="mt-3 inline-block rounded bg-white/5 px-1.5 py-0.5 text-[10px] font-bold tracking-wide text-paper/30">
+              <span className="mt-3 inline-block rounded bg-paper/5 px-1.5 py-0.5 text-[10px] font-bold tracking-wide text-paper/30">
                 TODO: реальная цифра
               </span>
             </div>
@@ -64,11 +64,11 @@ export function Home() {
         </div>
       </section>
 
-      <section className="border-y border-white/10">
+      <section className="border-y border-paper/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
           {pitchPoints.map((point) => (
             <div key={point.text} className="flex items-center gap-3">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 text-lime-500">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-paper/10 text-lime-500">
                 <point.icon size={20} strokeWidth={1.5} />
               </span>
               <span className="text-sm font-bold text-paper">{point.text}</span>
@@ -87,9 +87,9 @@ export function Home() {
               <Link
                 key={cat.name}
                 to={to}
-                className="group flex flex-col items-center gap-3 rounded-2xl border border-white/10 bg-ink-900 p-5 text-center transition-all hover:border-lime-500/30 hover:shadow-[0_0_32px_-10px_rgba(183,229,0,0.35)]"
+                className="group flex flex-col items-center gap-3 rounded-2xl border border-paper/10 bg-ink-900 p-5 text-center transition-all hover:border-lime-500/30 hover:shadow-[0_0_32px_-10px_rgba(183,229,0,0.35)]"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 text-paper/60 group-hover:bg-lime-500 group-hover:text-ink-950 group-hover:border-lime-500 transition-colors">
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-paper/10 text-paper/60 group-hover:bg-lime-500 group-hover:text-ink-950 group-hover:border-lime-500 transition-colors">
                   <Icon size={22} strokeWidth={1.5} />
                 </span>
                 <span className="text-sm font-bold text-paper">{cat.name}</span>
@@ -99,7 +99,7 @@ export function Home() {
         </div>
       </section>
 
-      <section className="border-t border-white/10">
+      <section className="border-t border-paper/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
           <div>
             <h2 className="text-xl sm:text-2xl font-bold text-paper">
@@ -119,7 +119,7 @@ export function Home() {
             </Link>
             <Link
               to="/services"
-              className="inline-flex items-center gap-1.5 rounded-xl border border-white/15 px-5 py-2.5 text-sm font-bold text-paper hover:bg-white/5 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-paper/15 px-5 py-2.5 text-sm font-bold text-paper hover:bg-paper/5 transition-colors"
             >
               Каталог услуг
               <ArrowUpRight size={15} strokeWidth={2.5} />

@@ -5,7 +5,7 @@ import { useGarage } from "../context/GarageContext";
 import { garageOffers, carBrands } from "../data/mock";
 
 const inputClass =
-  "w-full rounded-xl border border-white/15 bg-white/[0.03] px-3.5 py-2.5 text-sm text-paper outline-none focus:border-lime-500 transition-colors";
+  "w-full rounded-xl border border-paper/15 bg-paper/[0.03] px-3.5 py-2.5 text-sm text-paper outline-none focus:border-lime-500 transition-colors";
 
 export function Garage() {
   const { car, setCar, clearCar } = useGarage();
@@ -34,7 +34,7 @@ export function Garage() {
       {!car ? (
         <form
           onSubmit={handleSubmit}
-          className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-2xl border border-white/10 bg-ink-900 p-6"
+          className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-2xl border border-paper/10 bg-ink-900 p-6"
         >
           <div>
             <label className="block text-sm font-bold text-paper/60 mb-1.5">Марка</label>
@@ -113,9 +113,9 @@ export function Garage() {
         </form>
       ) : (
         <div className="mt-8 space-y-6">
-          <div className="flex items-start justify-between gap-4 rounded-2xl border border-white/10 bg-ink-900 p-6">
+          <div className="flex items-start justify-between gap-4 rounded-2xl border border-paper/10 bg-ink-900 p-6">
             <div className="flex items-start gap-4">
-              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-white/10 text-lime-500">
+              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-paper/10 text-lime-500">
                 <CarIcon size={26} strokeWidth={1.5} />
               </span>
               <div>
@@ -128,7 +128,7 @@ export function Garage() {
             </div>
             <button
               onClick={clearCar}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-paper/50 hover:bg-white/5 transition-colors shrink-0"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-paper/15 text-paper/50 hover:bg-paper/5 transition-colors shrink-0"
               aria-label="Удалить автомобиль"
             >
               <Trash2 size={16} strokeWidth={1.5} />
@@ -141,7 +141,7 @@ export function Garage() {
               {garageOffers.map((offer) => (
                 <div
                   key={offer.label}
-                  className="rounded-2xl border border-white/10 bg-ink-900 p-5 transition-all hover:border-lime-500/30 hover:shadow-[0_0_32px_-10px_rgba(183,229,0,0.35)]"
+                  className="rounded-2xl border border-paper/10 bg-ink-900 p-5 transition-all hover:border-lime-500/30 hover:shadow-[0_0_32px_-10px_rgba(183,229,0,0.35)]"
                 >
                   <p className="text-sm text-paper/50">{offer.label}</p>
                   <p className="mt-1 text-2xl font-bold text-lime-500">${offer.price}</p>
@@ -157,7 +157,7 @@ export function Garage() {
               </Link>
               <Link
                 to="/services"
-                className="inline-flex items-center gap-1.5 rounded-xl border border-white/15 px-5 py-2.5 text-sm font-bold text-paper hover:bg-white/5 transition-colors"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-paper/15 px-5 py-2.5 text-sm font-bold text-paper hover:bg-paper/5 transition-colors"
               >
                 Смотреть услуги СТО <ArrowRight size={15} strokeWidth={2.5} />
               </Link>

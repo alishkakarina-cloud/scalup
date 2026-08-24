@@ -20,7 +20,7 @@ export function Header() {
     }`;
 
   return (
-    <header className="sticky top-0 z-50 bg-ink-950/95 backdrop-blur border-b border-white/10">
+    <header className="sticky top-0 z-50 bg-ink-950/95 backdrop-blur border-b border-paper/10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center gap-2 shrink-0">
@@ -50,7 +50,7 @@ export function Header() {
             </Link>
             <Link
               to="/cart"
-              className="relative flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-paper hover:bg-white/5 transition-colors"
+              className="relative flex h-10 w-10 items-center justify-center rounded-full border border-paper/15 text-paper hover:bg-paper/5 transition-colors"
               aria-label="Корзина"
             >
               <ShoppingCart size={18} strokeWidth={1.75} />
@@ -61,7 +61,7 @@ export function Header() {
               )}
             </Link>
             <button
-              className="md:hidden flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-paper"
+              className="md:hidden flex h-10 w-10 items-center justify-center rounded-full border border-paper/15 text-paper"
               onClick={() => setOpen((v) => !v)}
               aria-label="Меню"
             >
@@ -72,7 +72,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-white/10 bg-ink-950 px-4 pb-4 pt-2">
+        <div className="md:hidden border-t border-paper/10 bg-ink-950 px-4 pb-4 pt-2">
           <nav className="flex flex-col gap-1">
             {navItems.map((item) => (
               <NavLink
@@ -81,7 +81,7 @@ export function Header() {
                 onClick={() => setOpen(false)}
                 className={({ isActive }) =>
                   `rounded-lg px-3 py-2.5 text-sm font-bold ${
-                    isActive ? "bg-white/5 text-lime-500" : "text-paper/70"
+                    isActive ? "bg-paper/5 text-lime-500" : "text-paper/70"
                   }`
                 }
               >

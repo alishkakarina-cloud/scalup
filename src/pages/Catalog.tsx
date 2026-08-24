@@ -6,7 +6,7 @@ import type { ProductCategory } from "../types";
 
 const categoryOptions: ProductCategory[] = ["Запчасти", "Масла", "Шины", "Аксессуары"];
 const selectClass =
-  "w-full rounded-xl border border-white/15 bg-white/[0.03] px-3 py-2 text-sm text-paper outline-none focus:border-lime-500 transition-colors";
+  "w-full rounded-xl border border-paper/15 bg-paper/[0.03] px-3 py-2 text-sm text-paper outline-none focus:border-lime-500 transition-colors";
 
 export function Catalog() {
   const [brand, setBrand] = useState<string>("Все");
@@ -102,14 +102,14 @@ export function Catalog() {
         </div>
         <button
           onClick={() => setFiltersOpen(true)}
-          className="lg:hidden inline-flex items-center gap-2 rounded-xl border border-white/15 px-4 py-2 text-sm font-bold text-paper"
+          className="lg:hidden inline-flex items-center gap-2 rounded-xl border border-paper/15 px-4 py-2 text-sm font-bold text-paper"
         >
           <SlidersHorizontal size={15} strokeWidth={1.5} /> Фильтры
         </button>
       </div>
 
       <div className="mt-8 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-8">
-        <aside className="hidden lg:block rounded-2xl border border-white/10 bg-ink-900 p-5 h-fit sticky top-24">
+        <aside className="hidden lg:block rounded-2xl border border-paper/10 bg-ink-900 p-5 h-fit sticky top-24">
           <h2 className="font-bold text-paper mb-4">Фильтры</h2>
           {filterPanel}
         </aside>
@@ -121,7 +121,7 @@ export function Catalog() {
             ))}
           </div>
         ) : (
-          <div className="rounded-2xl border border-dashed border-white/15 p-12 text-center text-paper/40">
+          <div className="rounded-2xl border border-dashed border-paper/15 p-12 text-center text-paper/40">
             Ничего не найдено по заданным фильтрам.
           </div>
         )}
@@ -129,8 +129,8 @@ export function Catalog() {
 
       {filtersOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          <div className="absolute inset-0 bg-black/60" onClick={() => setFiltersOpen(false)} />
-          <div className="absolute bottom-0 left-0 right-0 max-h-[85vh] overflow-y-auto rounded-t-2xl border-t border-white/10 bg-ink-950 p-5">
+          <div className="absolute inset-0 bg-ink-950/80" onClick={() => setFiltersOpen(false)} />
+          <div className="absolute bottom-0 left-0 right-0 max-h-[85vh] overflow-y-auto rounded-t-2xl border-t border-paper/10 bg-ink-950 p-5">
             <div className="flex items-center justify-between mb-4">
               <h2 className="font-bold text-paper">Фильтры</h2>
               <button onClick={() => setFiltersOpen(false)} aria-label="Закрыть" className="text-paper">
