@@ -1,10 +1,13 @@
 import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
-import { Minus, Plus, Trash2, ShoppingCart, CheckCircle2 } from "lucide-react";
+import { Minus, Plus, Trash2, ShoppingCart, CheckCircle2, ArrowRight } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import { useGarage } from "../context/GarageContext";
 
 type FulfillMethod = "delivery" | "pickup";
+
+const inputClass =
+  "w-full rounded-xl border border-white/15 bg-white/[0.03] px-3.5 py-2.5 text-sm text-paper outline-none focus:border-lime-500 transition-colors";
 
 export function Cart() {
   const { items, removeItem, updateQty, total, clear } = useCart();
@@ -23,16 +26,17 @@ export function Cart() {
   if (submitted) {
     return (
       <div className="mx-auto max-w-lg px-4 py-24 text-center">
-        <CheckCircle2 size={56} className="mx-auto text-emerald-500" />
-        <h1 className="mt-4 text-2xl font-extrabold text-navy-900">Заявка отправлена!</h1>
-        <p className="mt-2 text-navy-900/60">
+        <CheckCircle2 size={56} strokeWidth={1.5} className="mx-auto text-lime-500" />
+        <h1 className="mt-4 text-2xl font-bold text-paper">Заявка отправлена!</h1>
+        <p className="mt-2 text-paper/50">
           Мы свяжемся с вами по номеру {form.phone} для подтверждения заказа. Оплата — при получении или по согласованию с продавцом.
         </p>
         <Link
           to="/"
-          className="mt-8 inline-flex rounded-full bg-accent-500 px-6 py-3 text-sm font-semibold text-white hover:bg-accent-600 transition-colors"
+          className="mt-8 inline-flex items-center gap-1.5 rounded-xl bg-lime-500 px-6 py-3 text-sm font-bold text-ink-950 hover:bg-lime-600 transition-colors"
         >
           На главную
+          <ArrowRight size={15} strokeWidth={2.5} />
         </Link>
       </div>
     );
@@ -41,14 +45,14 @@ export function Cart() {
   if (items.length === 0) {
     return (
       <div className="mx-auto max-w-lg px-4 py-24 text-center">
-        <ShoppingCart size={48} className="mx-auto text-navy-900/20" />
-        <h1 className="mt-4 text-xl font-bold text-navy-900">Корзина пуста</h1>
-        <p className="mt-2 text-navy-900/60">Добавьте товары из каталога или запишитесь на услугу в СТО.</p>
+        <ShoppingCart size={48} strokeWidth={1.5} className="mx-auto text-paper/20" />
+        <h1 className="mt-4 text-xl font-bold text-paper">Корзина пуста</h1>
+        <p className="mt-2 text-paper/50">Добавьте товары из каталога или запишитесь на услугу в СТО.</p>
         <div className="mt-6 flex justify-center gap-3">
-          <Link to="/catalog" className="rounded-full bg-accent-500 px-5 py-2.5 text-sm font-semibold text-white">
+          <Link to="/catalog" className="rounded-xl bg-lime-500 px-5 py-2.5 text-sm font-bold text-ink-950 hover:bg-lime-600 transition-colors">
             Каталог товаров
           </Link>
-          <Link to="/services" className="rounded-full border border-black/10 px-5 py-2.5 text-sm font-semibold text-navy-900">
+          <Link to="/services" className="rounded-xl border border-white/15 px-5 py-2.5 text-sm font-bold text-paper hover:bg-white/5 transition-colors">
             Услуги СТО
           </Link>
         </div>
@@ -58,15 +62,15 @@ export function Cart() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-      <h1 className="text-2xl sm:text-3xl font-extrabold text-navy-900">Корзина</h1>
+      <h1 className="text-2xl sm:text-3xl font-bold text-paper">Корзина</h1>
 
       <div className="mt-8 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8">
         <div className="space-y-3">
           {items.map((item) => (
-            <div key={item.id} className="flex items-center gap-4 rounded-2xl border border-black/5 bg-white p-4">
+            <div key={item.id} className="flex items-center gap-4 rounded-2xl border border-white/10 bg-ink-900 p-4 transition-colors hover:border-white/20">
               <div className="flex-1 min-w-0">
-                <p className="font-semibold text-navy-900 truncate">{item.name}</p>
-                <p className="text-sm text-navy-900/50">
+                <p className="font-bold text-paper truncate">{item.name}</p>
+                <p className="text-sm text-paper/40">
                   {item.type === "product" ? item.shop : item.stoName}
                 </p>
               </div>
@@ -74,81 +78,81 @@ export function Cart() {
                 <div className="flex items-center gap-2 shrink-0">
                   <button
                     onClick={() => updateQty(item.id, item.qty - 1)}
-                    className="flex h-7 w-7 items-center justify-center rounded-full border border-black/10 text-navy-900/60"
+                    className="flex h-7 w-7 items-center justify-center rounded-full border border-white/15 text-paper/60"
                     aria-label="Уменьшить количество"
                   >
-                    <Minus size={13} />
+                    <Minus size={13} strokeWidth={1.5} />
                   </button>
-                  <span className="w-5 text-center text-sm font-semibold">{item.qty}</span>
+                  <span className="w-5 text-center text-sm font-bold text-paper">{item.qty}</span>
                   <button
                     onClick={() => updateQty(item.id, item.qty + 1)}
-                    className="flex h-7 w-7 items-center justify-center rounded-full border border-black/10 text-navy-900/60"
+                    className="flex h-7 w-7 items-center justify-center rounded-full border border-white/15 text-paper/60"
                     aria-label="Увеличить количество"
                   >
-                    <Plus size={13} />
+                    <Plus size={13} strokeWidth={1.5} />
                   </button>
                 </div>
               )}
-              <p className="w-16 shrink-0 text-right font-bold text-navy-900">${item.price * item.qty}</p>
+              <p className="w-16 shrink-0 text-right font-bold text-lime-500">${item.price * item.qty}</p>
               <button
                 onClick={() => removeItem(item.id)}
-                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-navy-900/30 hover:bg-rose-50 hover:text-rose-500 transition-colors"
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-paper/30 hover:bg-white/5 hover:text-paper transition-colors"
                 aria-label="Удалить"
               >
-                <Trash2 size={15} />
+                <Trash2 size={15} strokeWidth={1.5} />
               </button>
             </div>
           ))}
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-black/5 bg-white p-5 h-fit">
+        <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-white/10 bg-ink-900 p-5 h-fit">
           <div className="flex items-center justify-between text-lg">
-            <span className="font-semibold text-navy-900">Итого</span>
-            <span className="font-extrabold text-navy-900">${total}</span>
+            <span className="font-bold text-paper">Итого</span>
+            <span className="text-xl font-bold text-lime-500">${total}</span>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-navy-900/70 mb-1.5">Имя</label>
+            <label className="block text-sm font-bold text-paper/60 mb-1.5">Имя</label>
             <input
               required
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="w-full rounded-xl border border-black/10 px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-accent-500"
+              className={inputClass}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-navy-900/70 mb-1.5">Телефон</label>
+            <label className="block text-sm font-bold text-paper/60 mb-1.5">Телефон</label>
             <input
               required
               type="tel"
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
               placeholder="+996 700 000 000"
-              className="w-full rounded-xl border border-black/10 px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-accent-500"
+              className={inputClass}
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-navy-900/70 mb-1.5">Автомобиль</label>
+            <label className="block text-sm font-bold text-paper/60 mb-1.5">Автомобиль</label>
             {car ? (
-              <div className="rounded-xl bg-navy-950/5 px-3.5 py-2.5 text-sm text-navy-900">
+              <div className="rounded-xl border border-white/10 bg-white/[0.03] px-3.5 py-2.5 text-sm text-paper">
                 {car.brand} {car.model}, {car.year} г.
               </div>
             ) : (
-              <Link to="/garage" className="block rounded-xl border border-dashed border-black/15 px-3.5 py-2.5 text-sm text-navy-900/50 hover:bg-navy-950/5">
+              <Link to="/garage" className="block rounded-xl border border-dashed border-white/15 px-3.5 py-2.5 text-sm text-paper/40 hover:bg-white/5">
                 Авто не добавлено — добавить в «Моём гараже»
               </Link>
             )}
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-navy-900/70 mb-1.5">Способ получения</label>
+            <label className="block text-sm font-bold text-paper/60 mb-1.5">Способ получения</label>
             <div className="flex gap-2">
               <button
                 type="button"
                 onClick={() => setMethod("pickup")}
-                className={`flex-1 rounded-xl border py-2 text-sm font-semibold transition-colors ${
-                  method === "pickup" ? "border-accent-500 bg-accent-50 text-accent-600" : "border-black/10 text-navy-900/60"
+                className={`flex-1 rounded-xl border py-2 text-sm font-bold transition-colors ${
+                  method === "pickup" ? "border-lime-500 bg-lime-500/10 text-lime-500" : "border-white/15 text-paper/60"
                 }`}
               >
                 Самовывоз
@@ -156,8 +160,8 @@ export function Cart() {
               <button
                 type="button"
                 onClick={() => setMethod("delivery")}
-                className={`flex-1 rounded-xl border py-2 text-sm font-semibold transition-colors ${
-                  method === "delivery" ? "border-accent-500 bg-accent-50 text-accent-600" : "border-black/10 text-navy-900/60"
+                className={`flex-1 rounded-xl border py-2 text-sm font-bold transition-colors ${
+                  method === "delivery" ? "border-lime-500 bg-lime-500/10 text-lime-500" : "border-white/15 text-paper/60"
                 }`}
               >
                 Доставка
@@ -166,24 +170,25 @@ export function Cart() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-navy-900/70 mb-1.5">
-              Комментарий <span className="text-navy-900/40 font-normal">(необязательно)</span>
+            <label className="block text-sm font-bold text-paper/60 mb-1.5">
+              Комментарий <span className="text-paper/30 font-normal">(необязательно)</span>
             </label>
             <textarea
               value={form.comment}
               onChange={(e) => setForm({ ...form, comment: e.target.value })}
               rows={2}
-              className="w-full rounded-xl border border-black/10 px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-accent-500"
+              className={inputClass}
             />
           </div>
 
           <button
             type="submit"
-            className="w-full rounded-full bg-accent-500 py-3 text-sm font-semibold text-white hover:bg-accent-600 transition-colors"
+            className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl bg-lime-500 py-3 text-sm font-bold text-ink-950 hover:bg-lime-600 transition-colors"
           >
             Оформить заказ
+            <ArrowRight size={15} strokeWidth={2.5} />
           </button>
-          <p className="text-center text-xs text-navy-900/40">
+          <p className="text-center text-xs text-paper/30">
             Без онлайн-оплаты — это заявка, оператор свяжется с вами.
           </p>
         </form>

@@ -5,6 +5,8 @@ import { ProductCard } from "../components/ProductCard";
 import type { ProductCategory } from "../types";
 
 const categoryOptions: ProductCategory[] = ["Запчасти", "Масла", "Шины", "Аксессуары"];
+const selectClass =
+  "w-full rounded-xl border border-white/15 bg-white/[0.03] px-3 py-2 text-sm text-paper outline-none focus:border-lime-500 transition-colors";
 
 export function Catalog() {
   const [brand, setBrand] = useState<string>("Все");
@@ -28,57 +30,45 @@ export function Catalog() {
   const filterPanel = (
     <div className="space-y-6">
       <div>
-        <label className="block text-xs font-semibold uppercase tracking-wide text-navy-900/40 mb-2">
+        <label className="block text-xs font-bold uppercase tracking-wide text-paper/30 mb-2">
           Марка авто
         </label>
-        <select
-          value={brand}
-          onChange={(e) => setBrand(e.target.value)}
-          className="w-full rounded-xl border border-black/10 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-accent-500"
-        >
-          <option>Все</option>
+        <select value={brand} onChange={(e) => setBrand(e.target.value)} className={selectClass}>
+          <option className="bg-ink-900">Все</option>
           {carBrands.map((b) => (
-            <option key={b}>{b}</option>
+            <option key={b} className="bg-ink-900">{b}</option>
           ))}
         </select>
       </div>
 
       <div>
-        <label className="block text-xs font-semibold uppercase tracking-wide text-navy-900/40 mb-2">
+        <label className="block text-xs font-bold uppercase tracking-wide text-paper/30 mb-2">
           Категория
         </label>
-        <select
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          className="w-full rounded-xl border border-black/10 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-accent-500"
-        >
-          <option>Все</option>
+        <select value={category} onChange={(e) => setCategory(e.target.value)} className={selectClass}>
+          <option className="bg-ink-900">Все</option>
           {categoryOptions.map((c) => (
-            <option key={c}>{c}</option>
+            <option key={c} className="bg-ink-900">{c}</option>
           ))}
         </select>
       </div>
 
       <div>
-        <label className="block text-xs font-semibold uppercase tracking-wide text-navy-900/40 mb-2">
+        <label className="block text-xs font-bold uppercase tracking-wide text-paper/30 mb-2">
           Район
         </label>
-        <select
-          value={district}
-          onChange={(e) => setDistrict(e.target.value)}
-          className="w-full rounded-xl border border-black/10 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-accent-500"
-        >
-          <option>Все</option>
+        <select value={district} onChange={(e) => setDistrict(e.target.value)} className={selectClass}>
+          <option className="bg-ink-900">Все</option>
           {districts.map((d) => (
-            <option key={d}>{d}</option>
+            <option key={d} className="bg-ink-900">{d}</option>
           ))}
         </select>
       </div>
 
       <div>
-        <label className="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-navy-900/40 mb-2">
+        <label className="flex items-center justify-between text-xs font-bold uppercase tracking-wide text-paper/30 mb-2">
           <span>Цена до</span>
-          <span className="text-navy-900 normal-case text-sm font-bold">${maxPrice}</span>
+          <span className="text-paper normal-case text-sm font-bold">${maxPrice}</span>
         </label>
         <input
           type="range"
@@ -87,16 +77,16 @@ export function Catalog() {
           step={5}
           value={maxPrice}
           onChange={(e) => setMaxPrice(Number(e.target.value))}
-          className="w-full accent-accent-500"
+          className="w-full accent-lime-500"
         />
       </div>
 
-      <label className="flex items-center gap-2 text-sm text-navy-900/80">
+      <label className="flex items-center gap-2 text-sm text-paper/70">
         <input
           type="checkbox"
           checked={inStockOnly}
           onChange={(e) => setInStockOnly(e.target.checked)}
-          className="h-4 w-4 rounded accent-accent-500"
+          className="h-4 w-4 rounded accent-lime-500"
         />
         Только в наличии
       </label>
@@ -107,20 +97,20 @@ export function Catalog() {
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-navy-900">Каталог товаров</h1>
-          <p className="mt-1 text-navy-900/60">Найдено: {filtered.length}</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-paper">Каталог товаров</h1>
+          <p className="mt-1 text-paper/50">Найдено: {filtered.length}</p>
         </div>
         <button
           onClick={() => setFiltersOpen(true)}
-          className="lg:hidden inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-2 text-sm font-semibold text-navy-900"
+          className="lg:hidden inline-flex items-center gap-2 rounded-xl border border-white/15 px-4 py-2 text-sm font-bold text-paper"
         >
-          <SlidersHorizontal size={15} /> Фильтры
+          <SlidersHorizontal size={15} strokeWidth={1.5} /> Фильтры
         </button>
       </div>
 
       <div className="mt-8 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-8">
-        <aside className="hidden lg:block rounded-2xl border border-black/5 bg-white p-5 h-fit sticky top-24">
-          <h2 className="font-bold text-navy-900 mb-4">Фильтры</h2>
+        <aside className="hidden lg:block rounded-2xl border border-white/10 bg-ink-900 p-5 h-fit sticky top-24">
+          <h2 className="font-bold text-paper mb-4">Фильтры</h2>
           {filterPanel}
         </aside>
 
@@ -131,7 +121,7 @@ export function Catalog() {
             ))}
           </div>
         ) : (
-          <div className="rounded-2xl border border-dashed border-black/10 p-12 text-center text-navy-900/50">
+          <div className="rounded-2xl border border-dashed border-white/15 p-12 text-center text-paper/40">
             Ничего не найдено по заданным фильтрам.
           </div>
         )}
@@ -139,18 +129,18 @@ export function Catalog() {
 
       {filtersOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          <div className="absolute inset-0 bg-black/40" onClick={() => setFiltersOpen(false)} />
-          <div className="absolute bottom-0 left-0 right-0 max-h-[85vh] overflow-y-auto rounded-t-2xl bg-white p-5">
+          <div className="absolute inset-0 bg-black/60" onClick={() => setFiltersOpen(false)} />
+          <div className="absolute bottom-0 left-0 right-0 max-h-[85vh] overflow-y-auto rounded-t-2xl border-t border-white/10 bg-ink-950 p-5">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="font-bold text-navy-900">Фильтры</h2>
-              <button onClick={() => setFiltersOpen(false)} aria-label="Закрыть">
+              <h2 className="font-bold text-paper">Фильтры</h2>
+              <button onClick={() => setFiltersOpen(false)} aria-label="Закрыть" className="text-paper">
                 <X size={20} />
               </button>
             </div>
             {filterPanel}
             <button
               onClick={() => setFiltersOpen(false)}
-              className="mt-6 w-full rounded-full bg-accent-500 py-3 text-sm font-semibold text-white"
+              className="mt-6 w-full rounded-xl bg-lime-500 py-3 text-sm font-bold text-ink-950 hover:bg-lime-600 transition-colors"
             >
               Показать {filtered.length} товаров
             </button>

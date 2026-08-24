@@ -7,8 +7,8 @@ export function Services() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-      <h1 className="text-2xl sm:text-3xl font-extrabold text-navy-900">Каталог услуг</h1>
-      <p className="mt-1 text-navy-900/60">
+      <h1 className="text-2xl sm:text-3xl font-bold text-paper">Каталог услуг</h1>
+      <p className="mt-1 text-paper/50">
         Выберите категорию услуги СТО рядом с вами.
       </p>
 
@@ -17,10 +17,10 @@ export function Services() {
           <button
             key={cat}
             onClick={() => setActive(cat)}
-            className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+            className={`rounded-full px-4 py-2 text-sm font-bold transition-colors ${
               active === cat
-                ? "bg-accent-500 text-white"
-                : "bg-white border border-black/10 text-navy-900/70 hover:bg-navy-950/5"
+                ? "bg-lime-500 text-ink-950"
+                : "border border-white/15 text-paper/60 hover:bg-white/5"
             }`}
           >
             {cat}
@@ -28,7 +28,7 @@ export function Services() {
         ))}
       </div>
 
-      <div className="mt-8 rounded-2xl border border-black/5 bg-amber-50/60 px-4 py-3 text-sm text-amber-800">
+      <div className="mt-8 rounded-2xl border border-white/10 border-l-2 border-l-lime-500 bg-ink-900 px-4 py-3 text-sm text-paper/60">
         Раздел «{active}» пока в разработке — партнёры СТО добавят свои услуги позже.
         Ниже показан пример структуры карточки услуги.
       </div>
