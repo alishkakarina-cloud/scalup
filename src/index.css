@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink-950: #0b0b0b;
-  --color-ink-900: #1c1c1c;
-  --color-paper: #e7e5e2;
-  --color-lime-500: #b7e500;
-  --color-lime-400: #c8ff00;
-  --color-lime-600: #92b700;
+  --color-surface: #4e5e3e;
+  --color-surface-alt: #3a472e;
+  --color-cream: #f4efe6;
+  --color-accent: #c1573a;
+  --color-accent-hover: #ad5538;
+  --color-accent-soft: #8a6a4e;
   --font-sans: "Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
 }
 
@@ -16,8 +16,8 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-ink-950);
-  color: var(--color-paper);
+  background-color: var(--color-surface);
+  color: var(--color-cream);
 }
 
 ::-webkit-scrollbar {
@@ -25,7 +25,7 @@ body {
   height: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #3a3a3a;
+  background: #5a6b48;
   border-radius: 999px;
 }
 ::-webkit-scrollbar-track {
@@ -33,8 +33,8 @@ body {
 }
 
 ::selection {
-  background: var(--color-lime-500);
-  color: var(--color-ink-950);
+  background: var(--color-accent);
+  color: var(--color-cream);
 }
 
 /* Единый видимый фокус для клавиатурной навигации — не зависит от фона секции */
@@ -44,7 +44,7 @@ input:focus-visible,
 select:focus-visible,
 textarea:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid var(--color-lime-500);
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
   border-radius: 6px;
 }
