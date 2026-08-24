@@ -24,6 +24,7 @@ export interface Product {
   delivery: boolean;
   pickup: boolean;
   brandFit: string;
+  model?: string;
   icon: string;
 }
 

@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { SlidersHorizontal, X } from "lucide-react";
-import { products, districts, carBrands } from "../data/mock";
+import { products, districts, carBrands, carModels } from "../data/mock";
 import { ProductCard } from "../components/ProductCard";
 import type { ProductCategory } from "../types";
 
@@ -10,6 +10,7 @@ const selectClass =
 
 export function Catalog() {
   const [brand, setBrand] = useState<string>("Все");
+  const [model, setModel] = useState<string>("Все");
   const [category, setCategory] = useState<string>("Все");
   const [district, setDistrict] = useState<string>("Все");
   const [maxPrice, setMaxPrice] = useState(100);
@@ -19,13 +20,14 @@ export function Catalog() {
   const filtered = useMemo(() => {
     return products.filter((p) => {
       if (brand !== "Все" && !p.brandFit.includes(brand) && p.brandFit !== "Универсальное") return false;
+      if (model !== "Все" && p.model && p.model !== model) return false;
       if (category !== "Все" && p.category !== category) return false;
       if (district !== "Все" && p.district !== district) return false;
       if (p.price > maxPrice) return false;
       if (inStockOnly && !p.inStock) return false;
       return true;
     });
-  }, [brand, category, district, maxPrice, inStockOnly]);
+  }, [brand, model, category, district, maxPrice, inStockOnly]);
 
   const filterPanel = (
     <div className="space-y-6">
@@ -37,6 +39,18 @@ export function Catalog() {
           <option className="bg-ink-900">Все</option>
           {carBrands.map((b) => (
             <option key={b} className="bg-ink-900">{b}</option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label className="block text-xs font-bold uppercase tracking-wide text-paper/30 mb-2">
+          Модель
+        </label>
+        <select value={model} onChange={(e) => setModel(e.target.value)} className={selectClass}>
+          <option className="bg-ink-900">Все</option>
+          {carModels.map((m) => (
+            <option key={m} className="bg-ink-900">{m}</option>
           ))}
         </select>
       </div>

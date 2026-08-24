@@ -19,6 +19,7 @@ export const garageOffers = [
 
 export const districts = ["Центр", "Восток-5", "Джал", "Аламедин", "Асанбай"];
 export const carBrands = ["Toyota", "Hyundai", "Kia", "Honda", "Volkswagen", "Chevrolet"];
+export const carModels = ["Camry", "Corolla", "Elantra", "Sportage", "Civic", "Tiguan"];
 
 export const products: Product[] = [
   {
@@ -32,6 +33,7 @@ export const products: Product[] = [
     delivery: true,
     pickup: true,
     brandFit: "Toyota",
+    model: "Camry",
     icon: "Filter",
   },
   {
@@ -58,6 +60,7 @@ export const products: Product[] = [
     delivery: true,
     pickup: false,
     brandFit: "Hyundai",
+    model: "Elantra",
     icon: "Disc",
   },
   {
