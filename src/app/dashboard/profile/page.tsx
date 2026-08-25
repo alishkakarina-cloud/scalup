@@ -82,7 +82,7 @@ export default function ProviderProfilePage() {
         </div>
         <div>
           <label className="block text-sm font-bold text-cream/75 mb-1.5">Город</label>
-          <input value={profile.city ?? ""} onChange={(e) => setProfile({ ...profile, city: e.target.value })} className={inputClass} />
+          <p className={`${inputClass} text-cream/75`}>{profile.city ?? "Бишкек"}</p>
         </div>
         <div>
           <label className="block text-sm font-bold text-cream/75 mb-1.5">Категории услуг</label>

@@ -13,7 +13,6 @@ const schema = z.object({
   password: z.string().min(8, "Минимум 8 символов"),
   name: z.string().trim().min(2).max(120),
   phone: z.string().trim().min(5).max(30).optional(),
-  city: z.string().trim().max(80).optional(),
   role: z.enum(["CLIENT", "PROVIDER"]),
   businessName: z.string().trim().min(2).max(160).optional(),
 });
@@ -37,17 +36,20 @@ export async function POST(req: Request) {
 
     const passwordHash = await hashPassword(body.password);
 
+    // MVP пока работает только по Бишкеку — выбор города убран из UI,
+    // город хардкодится на бэкенде. Поле city в схеме не удаляем, чтобы
+    // в будущем было легко вернуть выбор города.
     const user = await prisma.user.create({
       data: {
         email: body.email,
         passwordHash,
         name: body.name,
         phone: body.phone,
-        city: body.city,
+        city: "Бишкек",
         role: body.role,
         provider:
           body.role === "PROVIDER"
-            ? { create: { businessName: body.businessName!, city: body.city, categories: [] } }
+            ? { create: { businessName: body.businessName!, city: "Бишкек", categories: [] } }
             : undefined,
       },
     });

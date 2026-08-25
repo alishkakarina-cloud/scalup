@@ -11,7 +11,7 @@ const inputClass =
 export default function RegisterPage() {
   const router = useRouter();
   const [role, setRole] = useState<"CLIENT" | "PROVIDER">("CLIENT");
-  const [form, setForm] = useState({ name: "", email: "", phone: "", city: "", password: "", businessName: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", password: "", businessName: "" });
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -85,10 +85,6 @@ export default function RegisterPage() {
         <div>
           <label className="block text-sm font-bold text-cream/75 mb-1.5">Телефон</label>
           <input className={inputClass} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+996 700 000 000" />
-        </div>
-        <div>
-          <label className="block text-sm font-bold text-cream/75 mb-1.5">Город</label>
-          <input className={inputClass} value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} placeholder="Бишкек" />
         </div>
         <div>
           <label className="block text-sm font-bold text-cream/75 mb-1.5">Пароль</label>

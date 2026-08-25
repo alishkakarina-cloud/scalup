@@ -9,7 +9,6 @@ const categorySlugs = SERVICE_CATEGORIES.map((c) => c.slug) as [string, ...strin
 const schema = z.object({
   businessName: z.string().trim().min(2).max(160).optional(),
   description: z.string().trim().max(2000).optional(),
-  city: z.string().trim().max(80).optional(),
   categories: z.array(z.enum(categorySlugs)).max(10).optional(),
   mobileService: z.boolean().optional(),
 });

@@ -76,7 +76,7 @@ async function main() {
     {
       email: "shina.tokmok@scalup.kg",
       businessName: "ШинМонтаж Токмок",
-      city: "Токмок",
+      city: "Бишкек",
       categories: ["tires"],
       description: "Шиномонтаж и балансировка колёс.",
       verified: false,
@@ -89,7 +89,7 @@ async function main() {
     {
       email: "detailing.osh@scalup.kg",
       businessName: "Detailing Osh Pro",
-      city: "Ош",
+      city: "Бишкек",
       categories: ["detailing"],
       description: "Профессиональный детейлинг и химчистка салона.",
       verified: false,
