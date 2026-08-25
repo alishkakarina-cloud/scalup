@@ -111,7 +111,7 @@ export function Catalog() {
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-cream">Каталог товаров</h1>
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-cream">Каталог товаров</h1>
           <p className="mt-1 text-cream/90">Найдено: {filtered.length}</p>
         </div>
         <button

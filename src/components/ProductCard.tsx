@@ -1,4 +1,4 @@
-import { MapPin, Truck, Store as StoreIcon, MessageCircle, ArrowRight } from "lucide-react";
+import { MapPin, Truck, Store as StoreIcon, MessageCircle, ArrowRight, ShieldCheck } from "lucide-react";
 import type { Product } from "../types";
 import { IconTile } from "./IconTile";
 import { useCart } from "../context/CartContext";
@@ -7,32 +7,39 @@ export function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
 
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-cream/10 bg-surface-alt p-4 transition-all hover:border-accent/30 hover:shadow-[0_0_32px_-10px_rgba(193,87,58,0.35)]">
-      <div className="relative h-36 w-full">
+    <div className="flex h-full flex-col rounded-2xl border border-cream/10 bg-surface-alt p-4 transition-all hover:border-accent/30 hover:shadow-[0_0_32px_-10px_rgba(194,91,58,0.45)]">
+      <div className="relative h-36 w-full overflow-hidden rounded-xl">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-accent/25 blur-2xl"
+          className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full blur-2xl"
+          style={{
+            background: "radial-gradient(circle, #E8825A 0%, #C25B3A 45%, rgba(143,63,38,0) 75%)",
+          }}
         />
         <IconTile iconName={product.icon} seed={product.id} className="relative h-full w-full" size={40} />
+        <div className="vignette rounded-xl" />
+        <span className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-[rgba(242,237,227,0.85)]">
+          <ShieldCheck size={13} strokeWidth={2} className="text-accent" />
+        </span>
       </div>
 
       <div className="mt-3 flex-1">
-        <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest text-cream/75">
+        <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest text-sage-200">
           <span className="h-1.5 w-1.5 rounded-full bg-accent" />
           {product.category}
         </span>
-        <h3 className="mt-1.5 font-bold text-cream leading-snug">{product.name}</h3>
-        <p className="mt-0.5 text-xs text-cream/75">Подходит: {product.brandFit}</p>
+        <h3 className="mt-1.5 font-extrabold tracking-tight text-cream leading-snug">{product.name}</h3>
+        <p className="mt-0.5 text-xs text-sage-100">Подходит: {product.brandFit}</p>
 
         <div className="mt-3 flex items-baseline gap-2">
-          <span className="text-xl font-bold text-cream">${product.price}</span>
-          <span className="inline-flex items-center gap-1.5 text-xs text-cream/75">
+          <span className="text-xl font-extrabold tracking-tight text-cream">${product.price}</span>
+          <span className="inline-flex items-center gap-1.5 text-xs text-sage-100">
             <span className={`h-1.5 w-1.5 rounded-full ${product.inStock ? "bg-accent" : "bg-cream/20"}`} />
             {product.inStock ? "в наличии" : "под заказ"}
           </span>
         </div>
 
-        <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-xs text-cream/75">
+        <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-xs text-sage-100">
           <span className="inline-flex items-center gap-1">
             <StoreIcon size={13} strokeWidth={1.5} /> {product.shop}
           </span>
@@ -43,12 +50,12 @@ export function ProductCard({ product }: { product: Product }) {
 
         <div className="mt-2 flex flex-wrap gap-1.5">
           {product.pickup && (
-            <span className="rounded-full border border-cream/10 px-2 py-0.5 text-[11px] text-cream/75">
+            <span className="rounded-full border border-cream/10 px-2 py-0.5 text-[11px] text-sage-100">
               Самовывоз
             </span>
           )}
           {product.delivery && (
-            <span className="inline-flex items-center gap-1 rounded-full border border-cream/10 px-2 py-0.5 text-[11px] text-cream/75">
+            <span className="inline-flex items-center gap-1 rounded-full border border-cream/10 px-2 py-0.5 text-[11px] text-sage-100">
               <Truck size={11} strokeWidth={1.5} /> Доставка
             </span>
           )}

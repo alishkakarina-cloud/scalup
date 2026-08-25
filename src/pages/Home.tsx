@@ -17,7 +17,7 @@ export function Home() {
         <div
           className="pointer-events-none absolute -top-10 -right-10 h-56 w-56 opacity-[0.07]"
           style={{
-            backgroundImage: "radial-gradient(circle, #3a472e 1.5px, transparent 1.5px)",
+            backgroundImage: "radial-gradient(circle, #2e3824 1.5px, transparent 1.5px)",
             backgroundSize: "16px 16px",
           }}
         />
@@ -34,7 +34,7 @@ export function Home() {
                 </span>
               </div>
 
-              <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.08] text-surface">
+              <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08] text-surface">
                 SC<span className="text-accent">AL</span>UP —<br />
                 всё для твоего<br />
                 <span className="text-accent">автомобиля</span>
@@ -76,19 +76,28 @@ export function Home() {
             </div>
 
             <div className="relative mt-6 lg:mt-0">
-              <span className="absolute -left-5 top-[38%] z-20 hidden sm:flex h-14 w-14 items-center justify-center rounded-full bg-accent text-cream shadow-xl">
+              <span className="absolute -left-5 top-[38%] z-20 hidden sm:flex h-14 w-14 items-center justify-center rounded-full bg-accent text-cream shadow-[0_8px_24px_rgba(0,0,0,0.35)]">
                 <Plus size={24} strokeWidth={2.5} />
               </span>
 
-              <div className="relative overflow-hidden rounded-3xl bg-surface aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/5]">
+              <div className="relative overflow-hidden rounded-3xl bg-surface-alt aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/5]">
                 <div
                   aria-hidden="true"
-                  className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-accent/25 blur-3xl"
+                  className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full blur-[50px]"
+                  style={{
+                    background:
+                      "radial-gradient(circle, #E8825A 0%, #C25B3A 45%, rgba(143,63,38,0) 75%)",
+                  }}
                 />
                 <div
                   aria-hidden="true"
-                  className="pointer-events-none absolute -left-10 bottom-10 h-40 w-40 rounded-full bg-accent/20 blur-2xl"
+                  className="pointer-events-none absolute -left-14 bottom-6 h-44 w-44 rounded-full blur-[40px] opacity-80"
+                  style={{
+                    background:
+                      "radial-gradient(circle, #E8825A 0%, #C25B3A 50%, rgba(143,63,38,0) 75%)",
+                  }}
                 />
+                <div className="vignette" />
                 <svg
                   viewBox="0 0 400 200"
                   aria-hidden="true"
@@ -106,7 +115,7 @@ export function Home() {
                   <circle cx="300" cy="140" r="22" />
                 </svg>
 
-                <div className="absolute top-4 left-4 sm:top-6 sm:left-6 inline-flex items-center gap-2 rounded-full border border-cream/10 bg-surface-alt px-3 py-1.5 shadow-lg">
+                <div className="absolute top-4 left-4 sm:top-6 sm:left-6 inline-flex items-center gap-2 rounded-full border border-cream/10 bg-surface-alt px-3 py-1.5">
                   <ShieldCheck size={14} strokeWidth={1.5} className="text-cream" />
                   <span className="text-[11px] font-bold text-cream">Гарантия качества</span>
                 </div>
@@ -117,16 +126,16 @@ export function Home() {
                   <span className="text-[11px] font-bold uppercase tracking-widest text-cream/80">Надёжно</span>
                 </div>
 
-                <div className="absolute left-4 bottom-4 sm:left-6 sm:bottom-6 w-[170px] rounded-2xl border border-cream/10 bg-surface-alt p-4 shadow-xl">
+                <div className="absolute left-4 bottom-4 sm:left-6 sm:bottom-6 w-[170px] rounded-2xl border border-cream/10 bg-surface-alt p-4">
                   <p className="text-xs text-cream/75">Точность подбора</p>
-                  <p className="mt-1 text-lg font-bold text-cream">98%</p>
+                  <p className="mt-1 text-lg font-extrabold text-cream">98%</p>
                   <div className="mt-2 h-1.5 w-full rounded-full bg-cream/10">
                     <div className="h-full w-[98%] rounded-full bg-accent" />
                   </div>
                 </div>
 
-                <div className="hidden sm:block absolute right-6 bottom-6 w-[150px] rounded-2xl border border-cream/10 bg-surface-alt p-4 shadow-xl">
-                  <p className="text-2xl font-bold text-cream">1500+</p>
+                <div className="hidden sm:block absolute right-6 bottom-6 w-[150px] rounded-2xl border border-cream/10 bg-surface-alt p-4">
+                  <p className="text-2xl font-extrabold text-cream">1500+</p>
                   <p className="mt-0.5 text-[11px] text-cream/75">авто в базе</p>
                   <span className="mt-2 inline-block rounded bg-cream/10 px-1.5 py-0.5 text-[9px] font-bold tracking-wide text-cream/80">
                     TODO: реальная цифра
@@ -139,7 +148,7 @@ export function Home() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <h2 className="text-xl sm:text-2xl font-bold text-cream">Категории</h2>
+        <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-cream">Категории</h2>
         <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
           {categories.map((cat, i) => {
             const Icon = (Icons as unknown as Record<string, LucideIcon>)[cat.icon];
@@ -149,7 +158,7 @@ export function Home() {
                 key={cat.name}
                 to={to}
                 style={{ animationDelay: `${i * 40}ms` }}
-                className="reveal group flex flex-col items-center gap-3 rounded-2xl border border-cream/10 bg-surface-alt p-5 text-center transition-all hover:border-accent/30 hover:shadow-[0_0_32px_-10px_rgba(193,87,58,0.35)]"
+                className="reveal group flex flex-col items-center gap-3 rounded-2xl border border-cream/10 bg-surface-alt p-5 text-center transition-all hover:border-accent/30 hover:shadow-[0_0_32px_-10px_rgba(194,91,58,0.35)]"
               >
                 <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-cream/10 text-cream/75 group-hover:bg-accent group-hover:text-cream group-hover:border-accent transition-colors">
                   <Icon size={22} strokeWidth={1.5} />
@@ -164,7 +173,7 @@ export function Home() {
       <section className="border-t border-cream/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
           <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-cream">
+            <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-cream">
               Не нашли нужную деталь или услугу?
             </h2>
             <p className="mt-1 text-cream/90">

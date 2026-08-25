@@ -10,7 +10,7 @@ export function Footer() {
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-cream">
               <Wrench size={16} strokeWidth={2} />
             </span>
-            <span className="text-lg font-bold tracking-tight text-cream">SCALUP</span>
+            <span className="text-lg font-extrabold tracking-tight text-cream">SCALUP</span>
           </Link>
           <nav className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
             <Link to="/catalog" className="hover:text-cream transition-colors">Каталог</Link>

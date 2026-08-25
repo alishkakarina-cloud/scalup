@@ -31,7 +31,7 @@ export function Cart() {
         <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent">
           <CheckCircle2 size={32} strokeWidth={1.5} className="text-cream" />
         </span>
-        <h1 className="mt-4 text-2xl font-bold text-cream">Заявка отправлена!</h1>
+        <h1 className="mt-4 text-2xl font-extrabold tracking-tight text-cream">Заявка отправлена!</h1>
         <p className="mt-2 text-cream/90">
           Мы свяжемся с вами по номеру {form.phone} для подтверждения заказа. Оплата — при получении или по согласованию с продавцом.
         </p>
@@ -50,7 +50,7 @@ export function Cart() {
     return (
       <div className="mx-auto max-w-lg px-4 py-24 text-center">
         <ShoppingCart size={48} strokeWidth={1.5} className="mx-auto text-cream/75" />
-        <h1 className="mt-4 text-xl font-bold text-cream">Корзина пуста</h1>
+        <h1 className="mt-4 text-xl font-extrabold tracking-tight text-cream">Корзина пуста</h1>
         <p className="mt-2 text-cream/90">Добавьте товары из каталога или запишитесь на услугу в СТО.</p>
         <div className="mt-6 flex justify-center gap-3">
           <Link to="/catalog" className="rounded-xl bg-accent px-5 py-2.5 text-sm font-bold text-cream hover:bg-accent-hover transition-colors">
@@ -66,7 +66,7 @@ export function Cart() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-      <h1 className="text-2xl sm:text-3xl font-bold text-cream">Корзина</h1>
+      <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-cream">Корзина</h1>
 
       <div className="mt-8 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8">
         <div className="space-y-3">
@@ -74,7 +74,7 @@ export function Cart() {
             <div key={item.id} className="flex items-center gap-4 rounded-2xl border border-cream/10 bg-surface-alt p-4 transition-colors hover:border-cream/20">
               <div className="flex-1 min-w-0">
                 <p className="font-bold text-cream truncate">{item.name}</p>
-                <p className="text-sm text-cream/75">
+                <p className="text-sm text-sage-100">
                   {item.type === "product" ? item.shop : item.stoName}
                 </p>
               </div>
@@ -97,7 +97,7 @@ export function Cart() {
                   </button>
                 </div>
               )}
-              <p className="w-16 shrink-0 text-right font-bold text-cream">${item.price * item.qty}</p>
+              <p className="w-16 shrink-0 text-right font-extrabold text-cream">${item.price * item.qty}</p>
               <button
                 onClick={() => removeItem(item.id)}
                 className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-cream/75 hover:bg-cream/5 hover:text-cream transition-colors"
@@ -112,7 +112,7 @@ export function Cart() {
         <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-cream/10 bg-surface-alt p-5 h-fit">
           <div className="flex items-center justify-between text-lg">
             <span className="font-bold text-cream">Итого</span>
-            <span className="text-xl font-bold text-cream">${total}</span>
+            <span className="text-xl font-extrabold tracking-tight text-cream">${total}</span>
           </div>
 
           <div>
@@ -143,7 +143,7 @@ export function Cart() {
                 {car.brand} {car.model}, {car.year} г.
               </div>
             ) : (
-              <Link to="/garage" className="block rounded-xl border border-dashed border-cream/15 px-3.5 py-2.5 text-sm text-cream/75 hover:bg-cream/5">
+              <Link to="/garage" className="block rounded-xl border border-dashed border-cream/15 px-3.5 py-2.5 text-sm text-sage-100 hover:bg-cream/5">
                 Авто не добавлено — добавить в «Моём гараже»
               </Link>
             )}

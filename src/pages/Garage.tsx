@@ -28,7 +28,7 @@ export function Garage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-      <h1 className="text-2xl sm:text-3xl font-bold text-cream">Мой гараж</h1>
+      <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-cream">Мой гараж</h1>
       <p className="mt-2 text-cream/90">
         Добавьте свой автомобиль, чтобы видеть подходящие товары и услуги.
       </p>
@@ -117,13 +117,20 @@ export function Garage() {
       ) : (
         <div className="mt-8 space-y-6">
           <div className="flex items-start justify-between gap-4 rounded-2xl border border-cream/10 bg-surface-alt p-6">
-            <div className="flex items-start gap-4">
-              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-accent text-cream">
+            <div className="relative flex items-start gap-4">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -left-4 -top-4 h-20 w-20 rounded-full blur-2xl"
+                style={{
+                  background: "radial-gradient(circle, #E8825A 0%, #C25B3A 50%, rgba(143,63,38,0) 75%)",
+                }}
+              />
+              <span className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-accent text-cream">
                 <CarIcon size={26} strokeWidth={1.5} />
               </span>
               <div>
-                <h3 className="text-lg font-bold text-cream">{car.brand} {car.model}</h3>
-                <p className="text-sm text-cream/75">
+                <h3 className="text-lg font-extrabold tracking-tight text-cream">{car.brand} {car.model}</h3>
+                <p className="text-sm text-sage-100">
                   {car.year} г. · {car.engine} · Госномер {car.plate}
                 </p>
                 {car.vin && <p className="text-xs text-cream/75 mt-0.5">VIN: {car.vin}</p>}
@@ -139,15 +146,15 @@ export function Garage() {
           </div>
 
           <div>
-            <h3 className="text-lg font-bold text-cream">Подходит для вашего авто</h3>
+            <h3 className="text-lg font-extrabold tracking-tight text-cream">Подходит для вашего авто</h3>
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
               {garageOffers.map((offer) => (
                 <div
                   key={offer.label}
-                  className="rounded-2xl border border-cream/10 bg-surface-alt p-5 transition-all hover:border-accent/30 hover:shadow-[0_0_32px_-10px_rgba(193,87,58,0.35)]"
+                  className="rounded-2xl border border-cream/10 bg-surface-alt p-5 transition-all hover:border-accent/30 hover:shadow-[0_0_32px_-10px_rgba(194,91,58,0.35)]"
                 >
-                  <p className="text-sm text-cream/75">{offer.label}</p>
-                  <p className="mt-1 text-2xl font-bold text-cream">${offer.price}</p>
+                  <p className="text-sm text-sage-100">{offer.label}</p>
+                  <p className="mt-1 text-2xl font-extrabold tracking-tight text-cream">${offer.price}</p>
                 </div>
               ))}
             </div>

@@ -7,7 +7,7 @@ export function Services() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-      <h1 className="text-2xl sm:text-3xl font-bold text-cream">Каталог услуг</h1>
+      <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-cream">Каталог услуг</h1>
       <p className="mt-1 text-cream/90">
         Выберите категорию услуги СТО рядом с вами.
       </p>
@@ -29,7 +29,7 @@ export function Services() {
         ))}
       </div>
 
-      <div className="mt-8 rounded-2xl border border-cream/10 border-l-2 border-l-accent bg-surface-alt px-4 py-3 text-sm text-cream/75">
+      <div className="mt-8 rounded-2xl border border-cream/10 border-l-2 border-l-accent bg-surface-alt px-4 py-3 text-sm text-sage-100">
         Раздел «{active}» пока в разработке — партнёры СТО добавят свои услуги позже.
         Ниже показан пример структуры карточки услуги.
       </div>

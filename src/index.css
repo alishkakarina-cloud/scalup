@@ -1,12 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --color-surface: #4e5e3e;
-  --color-surface-alt: #3a472e;
-  --color-cream: #f4efe6;
-  --color-accent: #c1573a;
-  --color-accent-hover: #ad5538;
-  --color-accent-soft: #8a6a4e;
+  --color-surface: #4a5a3c;
+  --color-surface-light: #5c6e4a;
+  --color-surface-alt: #2e3824;
+  --color-surface-deepest: #1f2517;
+  --color-cream: #f2ede3;
+  --color-accent: #c25b3a;
+  --color-accent-hover: #aa5335;
+  --color-accent-glow: #e8825a;
+  --color-accent-shadow: #8f3f26;
+  --color-sage-100: #b8c2a8;
+  --color-sage-200: #9ba688;
+  --color-sage-300: #7a8f63;
   --font-sans: "Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
 }
 
@@ -17,6 +23,8 @@ html {
 body {
   font-family: var(--font-sans);
   background-color: var(--color-surface);
+  background-image: radial-gradient(circle at 12% 8%, var(--color-surface-light), var(--color-surface) 55%);
+  background-attachment: fixed;
   color: var(--color-cream);
 }
 
@@ -35,6 +43,20 @@ body {
 ::selection {
   background: var(--color-accent);
   color: var(--color-cream);
+}
+
+/* Реалистичная глубина: карточки — утопленная тёмная панель + мягкая приподнимающая тень.
+   Матчим по подстроке класса, чтобы не переписывать box-shadow в каждом компоненте отдельно. */
+[class*="bg-surface-alt"] {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Виньетка для секций с "фото" — накладывается отдельным слоем поверх контейнера */
+.vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, transparent 45%, var(--color-surface-deepest) 130%);
 }
 
 /* Единый видимый фокус для клавиатурной навигации — не зависит от фона секции */

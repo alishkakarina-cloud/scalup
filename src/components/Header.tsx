@@ -27,7 +27,7 @@ export function Header() {
             <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-cream">
               <Wrench size={18} strokeWidth={2} />
             </span>
-            <span className="text-xl font-bold tracking-tight text-cream">
+            <span className="text-xl font-extrabold tracking-tight text-cream">
               SCALUP
             </span>
           </Link>
