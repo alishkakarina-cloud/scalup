@@ -1,0 +1,292 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  CLIENT
+  PROVIDER
+  ADMIN
+}
+
+enum OrderStatus {
+  NEW
+  CONFIRMED
+  PROVIDER_EN_ROUTE
+  WORK_STARTED
+  WORK_COMPLETED
+  AWAITING_CLIENT_CONFIRMATION
+  PAYOUT
+  COMPLETED
+  CANCELLED
+  DISPUTED
+}
+
+enum PaymentStatus {
+  PENDING
+  HELD
+  RELEASED
+  REFUNDED
+  PARTIALLY_REFUNDED
+}
+
+enum PayoutEligibility {
+  NOT_ELIGIBLE
+  AVAILABLE
+  REQUESTED
+  PAID
+}
+
+enum RefundStatus {
+  NONE
+  PARTIAL
+  FULL
+}
+
+enum PayoutRequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  PAID
+}
+
+enum DisputeStatus {
+  OPEN
+  RESOLVED
+}
+
+enum DisputeResolution {
+  FULL_REFUND_CLIENT
+  PARTIAL_REFUND
+  FULL_PAY_PROVIDER
+  SPLIT
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  role         Role
+  name         String
+  phone        String?
+  city         String?
+  createdAt    DateTime @default(now())
+
+  provider           Provider?
+  vehicles           Vehicle[]
+  ordersAsClient     Order[]              @relation("ClientOrders")
+  statusChanges      OrderStatusHistory[]
+  disputesOpened     Dispute[]            @relation("DisputeOpenedBy")
+  disputesResolved   Dispute[]            @relation("DisputeResolvedBy")
+  disputeMessages     DisputeMessage[]
+  reviews            Review[]
+  auditLogEntries    AuditLog[]
+  payoutsProcessed   Payout[]             @relation("PayoutProcessedBy")
+
+  @@index([role])
+}
+
+model Provider {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  user          User     @relation(fields: [userId], references: [id])
+  businessName  String
+  description   String?
+  categories    String[]
+  city          String?
+  photoUrl      String?
+  verified      Boolean  @default(false)
+  mobileService Boolean  @default(false)
+  ratingAvg     Float    @default(0)
+  ratingCount   Int      @default(0)
+  createdAt     DateTime @default(now())
+
+  services Service[]
+  orders   Order[]
+  payouts  Payout[]
+  reviews  Review[]
+
+  @@index([city])
+  @@index([verified])
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  providerId  String
+  provider    Provider @relation(fields: [providerId], references: [id])
+  category    String
+  name        String
+  description String?
+  price       Decimal  @db.Decimal(10, 2)
+  photoUrl    String?
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+
+  orders Order[]
+
+  @@index([providerId])
+  @@index([category])
+}
+
+model Vehicle {
+  id     String  @id @default(cuid())
+  userId String
+  user   User    @relation(fields: [userId], references: [id])
+  brand  String
+  model  String
+  year   String
+  engine String
+  plate  String
+  vin    String?
+
+  orders Order[]
+
+  @@index([userId])
+}
+
+model Order {
+  id       Int    @id @default(autoincrement())
+  code     String @unique
+
+  clientId   String
+  client     User     @relation("ClientOrders", fields: [clientId], references: [id])
+  providerId String
+  provider   Provider @relation(fields: [providerId], references: [id])
+  serviceId  String
+  service    Service  @relation(fields: [serviceId], references: [id])
+  vehicleId  String?
+  vehicle    Vehicle? @relation(fields: [vehicleId], references: [id])
+
+  scheduledDate String
+  scheduledTime String
+  address       String
+  comment       String?
+
+  status OrderStatus @default(NEW)
+
+  orderAmount       Decimal @db.Decimal(10, 2)
+  commissionPercent Decimal @db.Decimal(5, 2)
+  commissionAmount  Decimal @db.Decimal(10, 2)
+  providerAmount    Decimal @db.Decimal(10, 2)
+
+  paymentStatus PaymentStatus     @default(PENDING)
+  payoutStatus  PayoutEligibility @default(NOT_ELIGIBLE)
+  refundStatus  RefundStatus      @default(NONE)
+
+  payoutId String?
+  payout   Payout? @relation(fields: [payoutId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  statusHistory OrderStatusHistory[]
+  dispute       Dispute?
+  review        Review?
+
+  @@index([clientId])
+  @@index([providerId])
+  @@index([status])
+  @@index([payoutStatus])
+  @@index([createdAt])
+}
+
+model OrderStatusHistory {
+  id          String      @id @default(cuid())
+  orderId     Int
+  order       Order       @relation(fields: [orderId], references: [id])
+  status      OrderStatus
+  changedById String
+  changedBy   User        @relation(fields: [changedById], references: [id])
+  note        String?
+  createdAt   DateTime    @default(now())
+
+  @@index([orderId])
+}
+
+model Payout {
+  id          String              @id @default(cuid())
+  providerId  String
+  provider    Provider            @relation(fields: [providerId], references: [id])
+  amount      Decimal             @db.Decimal(10, 2)
+  status      PayoutRequestStatus @default(PENDING)
+  requisites  String
+  createdAt   DateTime            @default(now())
+  processedAt DateTime?
+  processedById String?
+  processedBy   User?             @relation("PayoutProcessedBy", fields: [processedById], references: [id])
+
+  orders Order[]
+
+  @@index([providerId])
+  @@index([status])
+}
+
+model Dispute {
+  id          String            @id @default(cuid())
+  orderId     Int               @unique
+  order       Order             @relation(fields: [orderId], references: [id])
+  openedById  String
+  openedBy    User              @relation("DisputeOpenedBy", fields: [openedById], references: [id])
+  reason      String
+  description String
+  evidenceUrls String[]
+  status      DisputeStatus     @default(OPEN)
+  resolution  DisputeResolution?
+  resolutionNote String?
+  clientRefundAmount Decimal?   @db.Decimal(10, 2)
+  providerPayAmount  Decimal?   @db.Decimal(10, 2)
+  resolvedById String?
+  resolvedBy   User?            @relation("DisputeResolvedBy", fields: [resolvedById], references: [id])
+  createdAt   DateTime          @default(now())
+  resolvedAt  DateTime?
+
+  messages DisputeMessage[]
+
+  @@index([status])
+}
+
+model DisputeMessage {
+  id           String   @id @default(cuid())
+  disputeId    String
+  dispute      Dispute  @relation(fields: [disputeId], references: [id])
+  authorId     String
+  author       User     @relation(fields: [authorId], references: [id])
+  text         String
+  evidenceUrls String[]
+  createdAt    DateTime @default(now())
+
+  @@index([disputeId])
+}
+
+model Review {
+  id         String   @id @default(cuid())
+  orderId    Int      @unique
+  order      Order    @relation(fields: [orderId], references: [id])
+  clientId   String
+  client     User     @relation(fields: [clientId], references: [id])
+  providerId String
+  provider   Provider @relation(fields: [providerId], references: [id])
+  rating     Int
+  text       String?
+  createdAt  DateTime @default(now())
+
+  @@index([providerId])
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  actorId    String
+  actor      User     @relation(fields: [actorId], references: [id])
+  action     String
+  entityType String
+  entityId   String
+  before     Json?
+  after      Json?
+  createdAt  DateTime @default(now())
+
+  @@index([entityType, entityId])
+  @@index([createdAt])
+}

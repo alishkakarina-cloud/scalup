@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import type { Car } from "../types";
 
@@ -11,10 +13,13 @@ const GarageContext = createContext<GarageContextValue | null>(null);
 const STORAGE_KEY = "scalup:car";
 
 export function GarageProvider({ children }: { children: ReactNode }) {
-  const [car, setCarState] = useState<Car | null>(() => {
+  // На сервере (SSR) localStorage недоступен — состояние гидрируется на клиенте.
+  const [car, setCarState] = useState<Car | null>(null);
+
+  useEffect(() => {
     const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as Car) : null;
-  });
+    if (raw) setCarState(JSON.parse(raw) as Car);
+  }, []);
 
   useEffect(() => {
     if (car) localStorage.setItem(STORAGE_KEY, JSON.stringify(car));

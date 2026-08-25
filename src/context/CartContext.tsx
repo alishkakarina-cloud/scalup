@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import type { CartItem } from "../types";
 
@@ -18,10 +20,13 @@ const CartContext = createContext<CartContextValue | null>(null);
 const STORAGE_KEY = "scalup:cart";
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [items, setItems] = useState<CartItem[]>(() => {
+  // На сервере (SSR) localStorage недоступен — состояние гидрируется на клиенте.
+  const [items, setItems] = useState<CartItem[]>([]);
+
+  useEffect(() => {
     const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as CartItem[]) : [];
-  });
+    if (raw) setItems(JSON.parse(raw) as CartItem[]);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));

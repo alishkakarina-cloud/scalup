@@ -43,29 +43,6 @@ export interface ServicePlaceholder {
   category: ServiceCategory;
 }
 
-export interface Review {
-  id: string;
-  author: string;
-  rating: number;
-  text: string;
-}
-
-export interface StoService {
-  name: string;
-  price: number;
-}
-
-export interface Sto {
-  id: string;
-  name: string;
-  description: string;
-  address: string;
-  hours: string;
-  rating: number;
-  services: StoService[];
-  reviews: Review[];
-}
-
 export type CartItem =
   | {
       id: string;

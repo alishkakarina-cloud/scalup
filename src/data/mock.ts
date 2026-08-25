@@ -1,4 +1,4 @@
-import type { Product, ServiceCategory, ServicePlaceholder, Sto } from "../types";
+import type { Product, ServiceCategory, ServicePlaceholder } from "../types";
 
 export const categories = [
   { name: "Запчасти", icon: "Cog" },
@@ -148,25 +148,3 @@ export const servicePlaceholders: ServicePlaceholder[] = [
   { id: "s4", category: "Шиномонтаж" },
 ];
 
-export const stoList: Sto[] = [
-  {
-    id: "sto1",
-    name: "СТО АвтоМастер",
-    description:
-      "Комплексное обслуживание легковых автомобилей: диагностика, ходовая часть, замена масла и жидкостей.",
-    address: "г. Бишкек, ул. Ахунбаева 123",
-    hours: "Пн–Сб: 09:00–19:00, Вс: выходной",
-    rating: 4.7,
-    services: [
-      { name: "Замена масла", price: 28 },
-      { name: "Диагностика ходовой", price: 15 },
-      { name: "Развал-схождение", price: 22 },
-      { name: "Замена тормозных колодок", price: 20 },
-    ],
-    reviews: [
-      { id: "r1", author: "Азамат", rating: 5, text: "Быстро и аккуратно, цены честные." },
-      { id: "r2", author: "Диана", rating: 4, text: "Хороший сервис, но пришлось немного подождать." },
-      { id: "r3", author: "Марат", rating: 5, text: "Записался онлайн, всё сделали точно в срок." },
-    ],
-  },
-];
