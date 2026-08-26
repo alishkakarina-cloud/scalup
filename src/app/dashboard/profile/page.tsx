@@ -13,7 +13,7 @@ interface ProviderProfile {
 }
 
 const inputClass =
-  "w-full rounded-xl border border-cream/15 bg-cream/[0.03] px-3.5 py-2.5 text-sm text-cream outline-none focus:border-accent transition-colors";
+  "w-full rounded-xl border border-cream/15 bg-surface-light px-3.5 py-2.5 text-sm text-cream outline-none focus:border-accent transition-colors";
 
 export default function ProviderProfilePage() {
   const [profile, setProfile] = useState<ProviderProfile | null>(null);
@@ -93,7 +93,7 @@ export default function ProviderProfilePage() {
                 key={c.slug}
                 onClick={() => toggleCategory(c.slug)}
                 className={`rounded-full px-3 py-1.5 text-xs font-bold transition-colors ${
-                  profile.categories.includes(c.slug) ? "bg-accent text-cream" : "border border-cream/15 text-cream/75"
+                  profile.categories.includes(c.slug) ? "bg-accent text-surface" : "border border-cream/15 text-cream/75"
                 }`}
               >
                 {c.label}
@@ -109,7 +109,7 @@ export default function ProviderProfilePage() {
         {error && <p className="text-sm text-accent-glow">{error}</p>}
         {saved && <p className="text-sm text-cream">Сохранено</p>}
 
-        <button type="submit" className="rounded-xl bg-accent px-5 py-2.5 text-sm font-bold text-cream hover:bg-accent-hover transition-colors">
+        <button type="submit" className="rounded-xl bg-accent px-5 py-2.5 text-sm font-bold text-surface hover:bg-accent-hover transition-colors">
           Сохранить
         </button>
       </form>

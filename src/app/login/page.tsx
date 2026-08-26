@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 const inputClass =
-  "w-full rounded-xl border border-cream/15 bg-cream/[0.03] px-3.5 py-2.5 text-sm text-cream outline-none focus:border-accent transition-colors";
+  "w-full rounded-xl border border-cream/15 bg-surface-light px-3.5 py-2.5 text-sm text-cream outline-none focus:border-accent transition-colors";
 
 function LoginForm() {
   const router = useRouter();
@@ -61,7 +61,7 @@ function LoginForm() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl bg-accent py-3 text-sm font-bold text-cream hover:bg-accent-hover transition-colors disabled:opacity-60"
+          className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl bg-accent py-3 text-sm font-bold text-surface hover:bg-accent-hover transition-colors disabled:opacity-60"
         >
           {loading ? "Входим…" : "Войти"}
           <ArrowRight size={15} strokeWidth={2.5} />

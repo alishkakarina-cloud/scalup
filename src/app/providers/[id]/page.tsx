@@ -46,9 +46,9 @@ export default async function ProviderDetailPage({ params }: { params: Promise<{
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute -inset-3 rounded-full blur-2xl"
-                style={{ background: "radial-gradient(circle, #E8825A 0%, #C25B3A 50%, rgba(143,63,38,0) 75%)" }}
+                style={{ background: "radial-gradient(circle, #F5F5F5 0%, #A8A8AC 50%, rgba(168,168,172,0) 75%)" }}
               />
-              <span className="relative flex h-20 w-20 items-center justify-center rounded-2xl bg-accent text-cream text-2xl font-extrabold">
+              <span className="relative flex h-20 w-20 items-center justify-center rounded-2xl bg-accent text-surface text-2xl font-extrabold">
                 {provider.businessName.slice(0, 1).toUpperCase()}
               </span>
             </div>

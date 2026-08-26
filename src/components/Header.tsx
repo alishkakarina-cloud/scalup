@@ -53,7 +53,7 @@ export function Header({ user }: { user: CurrentUser | null }) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2 shrink-0">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-cream">
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-surface">
               <Wrench size={18} strokeWidth={2} />
             </span>
             <span className="text-xl font-extrabold tracking-tight text-cream">SCALUP</span>
@@ -76,13 +76,19 @@ export function Header({ user }: { user: CurrentUser | null }) {
               {accountLabel(user)}
             </Link>
             <Link
+              href="/#booking"
+              className="hidden lg:inline-flex items-center gap-1.5 rounded-xl bg-accent px-4 py-2 text-sm font-bold text-surface hover:bg-accent-hover transition-colors"
+            >
+              Записаться
+            </Link>
+            <Link
               href="/cart"
               className="relative flex h-10 w-10 items-center justify-center rounded-full border border-cream/15 text-cream hover:bg-cream/5 transition-colors"
               aria-label="Корзина"
             >
               <ShoppingCart size={18} strokeWidth={1.75} />
               {count > 0 && (
-                <span className="absolute -top-1 -right-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-accent px-1 text-[11px] font-bold text-cream">
+                <span className="absolute -top-1 -right-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-accent px-1 text-[11px] font-bold text-surface">
                   {count}
                 </span>
               )}
@@ -116,7 +122,7 @@ export function Header({ user }: { user: CurrentUser | null }) {
             <Link
               href={accountHref(user)}
               onClick={() => setOpen(false)}
-              className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-xl bg-accent px-4 py-2.5 text-sm font-bold text-cream hover:bg-accent-hover transition-colors"
+              className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-xl bg-accent px-4 py-2.5 text-sm font-bold text-surface hover:bg-accent-hover transition-colors"
             >
               {accountLabel(user)}
               <ArrowRight size={15} strokeWidth={2.5} />

@@ -7,19 +7,19 @@ export function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
 
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-cream/10 bg-surface-alt p-4 transition-all hover:border-accent/30 hover:shadow-[0_0_32px_-10px_rgba(194,91,58,0.45)]">
+    <div className="flex h-full flex-col rounded-2xl border border-cream/10 bg-surface-alt p-4 transition-all hover:border-accent/30 hover:shadow-[0_0_32px_-10px_rgba(232,232,232,0.18)]">
       <div className="relative h-36 w-full overflow-hidden rounded-xl">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full blur-2xl"
           style={{
-            background: "radial-gradient(circle, #E8825A 0%, #C25B3A 45%, rgba(143,63,38,0) 75%)",
+            background: "radial-gradient(circle, #F5F5F5 0%, #A8A8AC 45%, rgba(168,168,172,0) 75%)",
           }}
         />
         <IconTile iconName={product.icon} seed={product.id} className="relative h-full w-full" size={40} />
         <div className="vignette rounded-xl" />
-        <span className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-[rgba(242,237,227,0.85)]">
-          <ShieldCheck size={13} strokeWidth={2} className="text-accent" />
+        <span className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-[rgba(245,245,245,0.85)]">
+          <ShieldCheck size={13} strokeWidth={2} className="text-surface" />
         </span>
       </div>
 
@@ -67,7 +67,7 @@ export function ProductCard({ product }: { product: Product }) {
           onClick={() =>
             addItem({ id: product.id, type: "product", name: product.name, price: product.price, shop: product.shop })
           }
-          className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl bg-accent py-2 text-sm font-bold text-cream hover:bg-accent-hover transition-colors"
+          className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl bg-accent py-2 text-sm font-bold text-surface hover:bg-accent-hover transition-colors"
         >
           Купить
           <ArrowRight size={14} strokeWidth={2.5} />

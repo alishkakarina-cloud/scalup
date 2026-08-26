@@ -22,7 +22,7 @@ export default function ServicesPage() {
             aria-pressed={active === cat}
             className={`rounded-full px-4 py-2 text-sm font-bold transition-colors ${
               active === cat
-                ? "bg-accent text-cream"
+                ? "bg-accent text-surface"
                 : "border border-cream/15 text-cream/90 hover:bg-cream/5"
             }`}
           >

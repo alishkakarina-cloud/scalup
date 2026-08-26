@@ -62,7 +62,7 @@ export default function AdminPayoutsPage() {
                   <button
                     disabled={busy === p.id}
                     onClick={() => act(p.id, "approve")}
-                    className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-4 py-2 text-sm font-bold text-cream hover:bg-accent-hover disabled:opacity-60"
+                    className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-4 py-2 text-sm font-bold text-surface hover:bg-accent-hover disabled:opacity-60"
                   >
                     <Check size={14} /> Одобрить и выплатить
                   </button>

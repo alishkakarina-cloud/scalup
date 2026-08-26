@@ -14,7 +14,7 @@ interface Service {
 }
 
 const inputClass =
-  "w-full rounded-xl border border-cream/15 bg-cream/[0.03] px-3.5 py-2.5 text-sm text-cream outline-none focus:border-accent transition-colors";
+  "w-full rounded-xl border border-cream/15 bg-surface-light px-3.5 py-2.5 text-sm text-cream outline-none focus:border-accent transition-colors";
 
 export default function ServicesPage() {
   const [services, setServices] = useState<Service[]>([]);
@@ -93,7 +93,7 @@ export default function ServicesPage() {
           <button
             type="submit"
             disabled={saving}
-            className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-5 py-2.5 text-sm font-bold text-cream hover:bg-accent-hover transition-colors disabled:opacity-60"
+            className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-5 py-2.5 text-sm font-bold text-surface hover:bg-accent-hover transition-colors disabled:opacity-60"
           >
             <Plus size={15} /> Добавить услугу
           </button>

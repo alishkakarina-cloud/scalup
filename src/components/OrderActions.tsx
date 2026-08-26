@@ -83,7 +83,7 @@ export function OrderActions({ orderId, status, viewerRole, hasDispute, disputeI
         <button
           disabled={loading}
           onClick={() => run(() => post(`/api/orders/${orderId}/status`, { action: nextAction }))}
-          className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl bg-accent py-2.5 text-sm font-bold text-cream hover:bg-accent-hover transition-colors disabled:opacity-60"
+          className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl bg-accent py-2.5 text-sm font-bold text-surface hover:bg-accent-hover transition-colors disabled:opacity-60"
         >
           {orderStatusLabel(nextAction)} <ArrowRight size={15} />
         </button>
@@ -93,7 +93,7 @@ export function OrderActions({ orderId, status, viewerRole, hasDispute, disputeI
         <button
           disabled={loading}
           onClick={() => run(() => post(`/api/orders/${orderId}/confirm`))}
-          className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl bg-accent py-2.5 text-sm font-bold text-cream hover:bg-accent-hover transition-colors disabled:opacity-60"
+          className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl bg-accent py-2.5 text-sm font-bold text-surface hover:bg-accent-hover transition-colors disabled:opacity-60"
         >
           Подтвердить выполнение работы <ArrowRight size={15} />
         </button>
@@ -124,14 +124,14 @@ export function OrderActions({ orderId, status, viewerRole, hasDispute, disputeI
                 value={reason}
                 onChange={(e) => setReason(e.target.value)}
                 placeholder="Причина спора"
-                className="w-full rounded-lg border border-cream/15 bg-cream/[0.03] px-3 py-2 text-sm text-cream outline-none focus:border-accent"
+                className="w-full rounded-lg border border-cream/15 bg-surface-light px-3 py-2 text-sm text-cream outline-none focus:border-accent"
               />
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Опишите проблему подробно"
                 rows={3}
-                className="w-full rounded-lg border border-cream/15 bg-cream/[0.03] px-3 py-2 text-sm text-cream outline-none focus:border-accent"
+                className="w-full rounded-lg border border-cream/15 bg-surface-light px-3 py-2 text-sm text-cream outline-none focus:border-accent"
               />
               <div className="flex gap-2">
                 <button
@@ -142,7 +142,7 @@ export function OrderActions({ orderId, status, viewerRole, hasDispute, disputeI
                       router.push(`/disputes/${data.dispute.id}`);
                     })
                   }
-                  className="flex-1 rounded-lg bg-accent py-2 text-sm font-bold text-cream hover:bg-accent-hover disabled:opacity-60"
+                  className="flex-1 rounded-lg bg-accent py-2 text-sm font-bold text-surface hover:bg-accent-hover disabled:opacity-60"
                 >
                   Отправить
                 </button>
@@ -178,12 +178,12 @@ export function OrderActions({ orderId, status, viewerRole, hasDispute, disputeI
                 onChange={(e) => setReviewText(e.target.value)}
                 placeholder="Как всё прошло?"
                 rows={3}
-                className="w-full rounded-lg border border-cream/15 bg-cream/[0.03] px-3 py-2 text-sm text-cream outline-none focus:border-accent"
+                className="w-full rounded-lg border border-cream/15 bg-surface-light px-3 py-2 text-sm text-cream outline-none focus:border-accent"
               />
               <button
                 disabled={loading}
                 onClick={() => run(() => post("/api/reviews", { orderId, rating, text: reviewText || undefined }))}
-                className="w-full rounded-lg bg-accent py-2 text-sm font-bold text-cream hover:bg-accent-hover disabled:opacity-60"
+                className="w-full rounded-lg bg-accent py-2 text-sm font-bold text-surface hover:bg-accent-hover disabled:opacity-60"
               >
                 Отправить отзыв
               </button>

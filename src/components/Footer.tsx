@@ -7,7 +7,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <Link href="/" className="flex items-center gap-2">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-cream">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-surface">
               <Wrench size={16} strokeWidth={2} />
             </span>
             <span className="text-lg font-extrabold tracking-tight text-cream">SCALUP</span>
@@ -19,7 +19,7 @@ export function Footer() {
             <Link href="/garage" className="hover:text-cream transition-colors">Мой гараж</Link>
             <Link
               href="/register"
-              className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-4 py-2 text-sm font-bold text-cream hover:bg-accent-hover transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-4 py-2 text-sm font-bold text-surface hover:bg-accent-hover transition-colors"
             >
               Стать исполнителем
               <ArrowRight size={14} strokeWidth={2.5} />

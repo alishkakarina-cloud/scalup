@@ -8,7 +8,7 @@ import type { ProductCategory } from "../../types";
 
 const categoryOptions: ProductCategory[] = ["Запчасти", "Масла", "Шины", "Аксессуары"];
 const selectClass =
-  "w-full rounded-xl border border-cream/15 bg-cream/[0.03] px-3 py-2 text-sm text-cream outline-none focus:border-accent transition-colors";
+  "w-full rounded-xl border border-cream/15 bg-surface-light px-3 py-2 text-sm text-cream outline-none focus:border-accent transition-colors";
 
 export default function CatalogPage() {
   const [brand, setBrand] = useState<string>("Все");
@@ -158,7 +158,7 @@ export default function CatalogPage() {
             {filterPanel}
             <button
               onClick={() => setFiltersOpen(false)}
-              className="mt-6 w-full rounded-xl bg-accent py-3 text-sm font-bold text-cream hover:bg-accent-hover transition-colors"
+              className="mt-6 w-full rounded-xl bg-accent py-3 text-sm font-bold text-surface hover:bg-accent-hover transition-colors"
             >
               Показать {filtered.length} товаров
             </button>

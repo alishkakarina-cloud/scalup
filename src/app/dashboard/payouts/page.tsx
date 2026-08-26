@@ -68,13 +68,13 @@ export default function PayoutsPage() {
           value={requisites}
           onChange={(e) => setRequisites(e.target.value)}
           placeholder="Реквизиты для выплаты (карта / счёт)"
-          className="w-full rounded-xl border border-cream/15 bg-cream/[0.03] px-3.5 py-2.5 text-sm text-cream outline-none focus:border-accent"
+          className="w-full rounded-xl border border-cream/15 bg-surface-light px-3.5 py-2.5 text-sm text-cream outline-none focus:border-accent"
         />
         {error && <p className="text-sm text-accent-glow">{error}</p>}
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-xl bg-accent py-2.5 text-sm font-bold text-cream hover:bg-accent-hover transition-colors disabled:opacity-60"
+          className="w-full rounded-xl bg-accent py-2.5 text-sm font-bold text-surface hover:bg-accent-hover transition-colors disabled:opacity-60"
         >
           {loading ? "Отправляем…" : "Вывести деньги"}
         </button>

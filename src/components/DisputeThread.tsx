@@ -77,9 +77,9 @@ export function DisputeThread({ disputeId, isAdmin, resolved, orderAmount }: Pro
             onChange={(e) => setText(e.target.value)}
             placeholder="Ваш ответ / доказательства…"
             rows={3}
-            className="w-full rounded-lg border border-cream/15 bg-cream/[0.03] px-3 py-2 text-sm text-cream outline-none focus:border-accent"
+            className="w-full rounded-lg border border-cream/15 bg-surface-light px-3 py-2 text-sm text-cream outline-none focus:border-accent"
           />
-          <button disabled={loading} className="rounded-lg bg-accent px-4 py-2 text-sm font-bold text-cream hover:bg-accent-hover disabled:opacity-60">
+          <button disabled={loading} className="rounded-lg bg-accent px-4 py-2 text-sm font-bold text-surface hover:bg-accent-hover disabled:opacity-60">
             Отправить
           </button>
         </form>
@@ -115,7 +115,7 @@ export function DisputeThread({ disputeId, isAdmin, resolved, orderAmount }: Pro
                 placeholder="Клиенту"
                 value={clientRefundAmount}
                 onChange={(e) => setClientRefundAmount(e.target.value)}
-                className="rounded-lg border border-cream/15 bg-cream/[0.03] px-3 py-2 text-sm text-cream outline-none focus:border-accent"
+                className="rounded-lg border border-cream/15 bg-surface-light px-3 py-2 text-sm text-cream outline-none focus:border-accent"
               />
               <input
                 type="number"
@@ -123,7 +123,7 @@ export function DisputeThread({ disputeId, isAdmin, resolved, orderAmount }: Pro
                 placeholder="Исполнителю"
                 value={providerPayAmount}
                 onChange={(e) => setProviderPayAmount(e.target.value)}
-                className="rounded-lg border border-cream/15 bg-cream/[0.03] px-3 py-2 text-sm text-cream outline-none focus:border-accent"
+                className="rounded-lg border border-cream/15 bg-surface-light px-3 py-2 text-sm text-cream outline-none focus:border-accent"
               />
             </div>
           )}
@@ -131,9 +131,9 @@ export function DisputeThread({ disputeId, isAdmin, resolved, orderAmount }: Pro
             value={note}
             onChange={(e) => setNote(e.target.value)}
             placeholder="Комментарий к решению (необязательно)"
-            className="w-full rounded-lg border border-cream/15 bg-cream/[0.03] px-3 py-2 text-sm text-cream outline-none focus:border-accent"
+            className="w-full rounded-lg border border-cream/15 bg-surface-light px-3 py-2 text-sm text-cream outline-none focus:border-accent"
           />
-          <button disabled={loading} className="w-full rounded-lg bg-accent py-2.5 text-sm font-bold text-cream hover:bg-accent-hover disabled:opacity-60">
+          <button disabled={loading} className="w-full rounded-lg bg-accent py-2.5 text-sm font-bold text-surface hover:bg-accent-hover disabled:opacity-60">
             Разрешить спор
           </button>
         </form>

@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 
 const inputClass =
-  "w-full rounded-xl border border-cream/15 bg-cream/[0.03] px-3.5 py-2.5 text-sm text-cream outline-none focus:border-accent transition-colors";
+  "w-full rounded-xl border border-cream/15 bg-surface-light px-3.5 py-2.5 text-sm text-cream outline-none focus:border-accent transition-colors";
 
 export default function SettingsPage() {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -42,7 +42,7 @@ export default function SettingsPage() {
           <input required type="password" minLength={8} value={newPassword} onChange={(e) => setNewPassword(e.target.value)} className={inputClass} />
         </div>
         {message && <p className={`text-sm ${message.type === "error" ? "text-accent-glow" : "text-cream"}`}>{message.text}</p>}
-        <button type="submit" className="rounded-xl bg-accent px-5 py-2.5 text-sm font-bold text-cream hover:bg-accent-hover transition-colors">
+        <button type="submit" className="rounded-xl bg-accent px-5 py-2.5 text-sm font-bold text-surface hover:bg-accent-hover transition-colors">
           Сохранить
         </button>
       </form>

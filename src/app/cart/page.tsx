@@ -9,7 +9,7 @@ import { useGarage } from "../../context/GarageContext";
 type FulfillMethod = "delivery" | "pickup";
 
 const inputClass =
-  "w-full rounded-xl border border-cream/15 bg-cream/[0.03] px-3.5 py-2.5 text-sm text-cream outline-none focus:border-accent transition-colors";
+  "w-full rounded-xl border border-cream/15 bg-surface-light px-3.5 py-2.5 text-sm text-cream outline-none focus:border-accent transition-colors";
 
 export default function CartPage() {
   const { items, removeItem, updateQty, total, clear } = useCart();
@@ -39,7 +39,7 @@ export default function CartPage() {
         </p>
         <Link
           href="/"
-          className="mt-8 inline-flex items-center gap-1.5 rounded-xl bg-accent px-6 py-3 text-sm font-bold text-cream hover:bg-accent-hover transition-colors"
+          className="mt-8 inline-flex items-center gap-1.5 rounded-xl bg-accent px-6 py-3 text-sm font-bold text-surface hover:bg-accent-hover transition-colors"
         >
           На главную
           <ArrowRight size={15} strokeWidth={2.5} />
@@ -55,7 +55,7 @@ export default function CartPage() {
         <h1 className="mt-4 text-xl font-extrabold tracking-tight text-cream">Корзина пуста</h1>
         <p className="mt-2 text-cream/90">Добавьте товары из каталога или запишитесь на услугу в СТО.</p>
         <div className="mt-6 flex justify-center gap-3">
-          <Link href="/catalog" className="rounded-xl bg-accent px-5 py-2.5 text-sm font-bold text-cream hover:bg-accent-hover transition-colors">
+          <Link href="/catalog" className="rounded-xl bg-accent px-5 py-2.5 text-sm font-bold text-surface hover:bg-accent-hover transition-colors">
             Каталог товаров
           </Link>
           <Link href="/services" className="rounded-xl border border-cream/15 px-5 py-2.5 text-sm font-bold text-cream hover:bg-cream/5 transition-colors">
@@ -141,7 +141,7 @@ export default function CartPage() {
           <div>
             <label className="block text-sm font-bold text-cream/75 mb-1.5">Автомобиль</label>
             {car ? (
-              <div className="rounded-xl border border-cream/10 bg-cream/[0.03] px-3.5 py-2.5 text-sm text-cream">
+              <div className="rounded-xl border border-cream/10 bg-surface-light px-3.5 py-2.5 text-sm text-cream">
                 {car.brand} {car.model}, {car.year} г.
               </div>
             ) : (
@@ -192,7 +192,7 @@ export default function CartPage() {
           <button
             type="submit"
             disabled={!isValid}
-            className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl bg-accent py-3 text-sm font-bold text-cream hover:bg-accent-hover transition-colors disabled:bg-cream/10 disabled:text-cream/30 disabled:hover:bg-cream/10"
+            className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl bg-accent py-3 text-sm font-bold text-surface hover:bg-accent-hover transition-colors disabled:bg-cream/10 disabled:text-cream/30 disabled:hover:bg-cream/10"
           >
             Оформить заказ
             <ArrowRight size={15} strokeWidth={2.5} />

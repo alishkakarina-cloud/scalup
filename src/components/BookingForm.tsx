@@ -18,7 +18,7 @@ interface Vehicle {
 }
 
 const inputClass =
-  "w-full rounded-xl border border-cream/15 bg-cream/[0.03] px-3.5 py-2.5 text-sm text-cream outline-none focus:border-accent transition-colors";
+  "w-full rounded-xl border border-cream/15 bg-surface-light px-3.5 py-2.5 text-sm text-cream outline-none focus:border-accent transition-colors";
 
 export function BookingForm({ services, user }: { services: ServiceOption[]; user: CurrentUser | null }) {
   const router = useRouter();
@@ -86,7 +86,7 @@ export function BookingForm({ services, user }: { services: ServiceOption[]; use
         <p className="mt-1 text-sm text-sage-100">Средства заморожены (тестовый режим). Следите за статусом в личном кабинете.</p>
         <button
           onClick={() => router.push("/account/orders")}
-          className="mt-4 inline-flex items-center gap-1.5 rounded-xl bg-accent px-5 py-2.5 text-sm font-bold text-cream hover:bg-accent-hover transition-colors"
+          className="mt-4 inline-flex items-center gap-1.5 rounded-xl bg-accent px-5 py-2.5 text-sm font-bold text-surface hover:bg-accent-hover transition-colors"
         >
           Мои заказы <ArrowRight size={15} strokeWidth={2.5} />
         </button>
@@ -153,7 +153,7 @@ export function BookingForm({ services, user }: { services: ServiceOption[]; use
       <button
         type="submit"
         disabled={loading || !serviceId}
-        className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl bg-accent py-3 text-sm font-bold text-cream hover:bg-accent-hover transition-colors disabled:opacity-60"
+        className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl bg-accent py-3 text-sm font-bold text-surface hover:bg-accent-hover transition-colors disabled:opacity-60"
       >
         {loading ? "Оформляем…" : "Записаться"}
         <ArrowRight size={15} strokeWidth={2.5} />

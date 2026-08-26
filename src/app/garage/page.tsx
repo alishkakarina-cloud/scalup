@@ -7,7 +7,7 @@ import { useGarage } from "../../context/GarageContext";
 import { garageOffers, carBrands } from "../../data/mock";
 
 const inputClass =
-  "w-full rounded-xl border border-cream/15 bg-cream/[0.03] px-3.5 py-2.5 text-sm text-cream outline-none focus:border-accent transition-colors";
+  "w-full rounded-xl border border-cream/15 bg-surface-light px-3.5 py-2.5 text-sm text-cream outline-none focus:border-accent transition-colors";
 
 export default function GaragePage() {
   const { car, setCar, clearCar } = useGarage();
@@ -109,7 +109,7 @@ export default function GaragePage() {
             <button
               type="submit"
               disabled={!isValid}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-6 py-3 text-sm font-bold text-cream hover:bg-accent-hover transition-colors disabled:bg-cream/10 disabled:text-cream/30 disabled:hover:bg-cream/10"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-6 py-3 text-sm font-bold text-surface hover:bg-accent-hover transition-colors disabled:bg-cream/10 disabled:text-cream/30 disabled:hover:bg-cream/10"
             >
               Добавить автомобиль
               <ArrowRight size={15} strokeWidth={2.5} />
@@ -124,10 +124,10 @@ export default function GaragePage() {
                 aria-hidden="true"
                 className="pointer-events-none absolute -left-4 -top-4 h-20 w-20 rounded-full blur-2xl"
                 style={{
-                  background: "radial-gradient(circle, #E8825A 0%, #C25B3A 50%, rgba(143,63,38,0) 75%)",
+                  background: "radial-gradient(circle, #F5F5F5 0%, #A8A8AC 50%, rgba(168,168,172,0) 75%)",
                 }}
               />
-              <span className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-accent text-cream">
+              <span className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-accent text-surface">
                 <CarIcon size={26} strokeWidth={1.5} />
               </span>
               <div>
@@ -153,7 +153,7 @@ export default function GaragePage() {
               {garageOffers.map((offer) => (
                 <div
                   key={offer.label}
-                  className="rounded-2xl border border-cream/10 bg-surface-alt p-5 transition-all hover:border-accent/30 hover:shadow-[0_0_32px_-10px_rgba(194,91,58,0.35)]"
+                  className="rounded-2xl border border-cream/10 bg-surface-alt p-5 transition-all hover:border-accent/30 hover:shadow-[0_0_32px_-10px_rgba(232,232,232,0.14)]"
                 >
                   <p className="text-sm text-sage-100">{offer.label}</p>
                   <p className="mt-1 text-2xl font-extrabold tracking-tight text-cream">${offer.price}</p>
@@ -163,7 +163,7 @@ export default function GaragePage() {
             <div className="mt-5 flex flex-wrap gap-3">
               <Link
                 href="/catalog"
-                className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-5 py-2.5 text-sm font-bold text-cream hover:bg-accent-hover transition-colors"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-5 py-2.5 text-sm font-bold text-surface hover:bg-accent-hover transition-colors"
               >
                 Смотреть каталог товаров <ArrowRight size={15} strokeWidth={2.5} />
               </Link>

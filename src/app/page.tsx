@@ -1,154 +1,231 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Target, ShieldCheck, Award, Plus } from "lucide-react";
-import * as Icons from "lucide-react";
-import type { LucideIcon } from "lucide-react";
-import { HomeSearch } from "../components/HomeSearch";
-import { SERVICE_CATEGORIES } from "../lib/categories";
+import { ArrowUpRight, ArrowRight, Car, ShieldCheck, Award, Lock, Tag, Star, Wrench, Droplets, CircleDot, Cog } from "lucide-react";
+import { LeadForm } from "../components/LeadForm";
 
-const pitchPoints = [
-  { icon: Target, text: "Точный подбор под ваш авто" },
-  { icon: ShieldCheck, text: "Проверенные СТО-партнёры" },
-  { icon: Award, text: "Гарантия качества запчастей" },
+const stats = [
+  { icon: Car, value: "1500+", label: "авто в базе" },
+  { icon: ShieldCheck, value: "Проверенные", label: "СТО-партнёры" },
+  { icon: Award, value: "Гарантия", label: "качества" },
+];
+
+const categoryCards = [
+  {
+    number: "01",
+    icon: Wrench,
+    title: "СТО",
+    description: "Диагностика, ремонт и комплексное обслуживание автомобиля.",
+    href: "/providers?category=sto",
+  },
+  {
+    number: "02",
+    icon: Droplets,
+    title: "Замена масла",
+    description: "Регламентная замена масла и технических жидкостей.",
+    href: "/providers?category=oil",
+  },
+  {
+    number: "03",
+    icon: CircleDot,
+    title: "Шиномонтаж",
+    description: "Шиномонтаж, балансировка и сезонное хранение шин.",
+    href: "/providers?category=tires",
+  },
+  {
+    number: "04",
+    icon: Cog,
+    title: "Запчасти",
+    description: "Оригинальные и аналоговые запчасти под ваш автомобиль.",
+    href: "/catalog",
+  },
+];
+
+const advantages = [
+  {
+    icon: ShieldCheck,
+    title: "Проверенные исполнители",
+    description: "Каждый СТО проходит проверку перед публикацией на платформе.",
+  },
+  {
+    icon: Lock,
+    title: "Честная оплата",
+    description: "Деньги переводятся исполнителю только после вашего подтверждения работы.",
+  },
+  {
+    icon: Tag,
+    title: "Понятные цены",
+    description: "Комиссия платформы известна заранее — никаких скрытых доплат.",
+  },
 ];
 
 export default function Home() {
   return (
     <div>
-      <section className="relative overflow-hidden bg-cream">
-        <div
-          className="pointer-events-none absolute -top-10 -right-10 h-56 w-56 opacity-[0.07]"
-          style={{
-            backgroundImage: "radial-gradient(circle, #2e3824 1.5px, transparent 1.5px)",
-            backgroundSize: "16px 16px",
-          }}
-        />
-        <div className="pointer-events-none absolute top-24 left-[38%] h-px w-24 -rotate-45 bg-surface/10 hidden lg:block" />
-        <div className="pointer-events-none absolute bottom-16 left-[42%] h-px w-16 -rotate-45 bg-surface/10 hidden lg:block" />
+      {/* Блок 1 — hero: тёмная карточка, текст+кнопки+статистика слева, фото Porsche справа */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-6 sm:pt-10">
+        <div className="relative overflow-hidden rounded-3xl border border-cream/10 bg-surface-alt">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full blur-[80px] opacity-40"
+            style={{ background: "radial-gradient(circle, #F5F5F5 0%, rgba(245,245,245,0) 70%)" }}
+          />
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-10 items-center">
+          <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-6 items-center p-6 sm:p-10 lg:p-14">
             <div>
-              <div className="flex items-center gap-3">
-                <span className="h-px w-8 bg-surface/30" />
-                <span className="text-xs font-bold uppercase tracking-[0.2em] text-surface">
-                  О платформе
-                </span>
-              </div>
-
-              <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08] text-surface">
-                Найдите <span className="text-accent">специалиста</span>
-                <br />
-                для своего автомобиля
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.08]">
+                <span className="block font-normal text-cream">Найдите специалиста</span>
+                <span className="block font-extrabold text-cream">для своего автомобиля</span>
               </h1>
 
-              <p className="mt-5 text-surface text-base sm:text-lg max-w-md">
+              <p className="mt-5 text-sage-100 text-base sm:text-lg max-w-md">
                 Запчасти, масла, шины и услуги проверенных СТО — подобранные точно под твой автомобиль.
               </p>
 
-              <HomeSearch />
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a
+                  href="#booking"
+                  className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-6 py-3 text-sm font-bold text-surface hover:bg-accent-hover transition-colors"
+                >
+                  Записаться
+                  <ArrowRight size={15} strokeWidth={2.5} />
+                </a>
+                <Link
+                  href="/providers"
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-sage-100 px-6 py-3 text-sm font-bold text-cream hover:bg-cream/5 transition-colors"
+                >
+                  Услуги
+                  <ArrowRight size={15} strokeWidth={2.5} />
+                </Link>
+              </div>
 
-              <div className="mt-10 space-y-4">
-                {pitchPoints.map((point) => (
-                  <div key={point.text} className="flex items-center gap-3">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-surface/15 text-surface/80">
-                      <point.icon size={16} strokeWidth={1.5} />
+              <div className="mt-10 flex flex-wrap gap-x-8 gap-y-5">
+                {stats.map((stat) => (
+                  <div key={stat.label} className="flex items-center gap-3">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-sage-100/40 text-cream">
+                      <stat.icon size={18} strokeWidth={1.5} />
                     </span>
-                    <span className="text-sm font-bold text-surface">{point.text}</span>
+                    <div>
+                      <p className="text-sm font-extrabold text-cream leading-tight">{stat.value}</p>
+                      <p className="text-xs text-sage-100 leading-tight">{stat.label}</p>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="relative mt-6 lg:mt-0">
-              <span className="absolute -left-5 top-[38%] z-20 hidden sm:flex h-14 w-14 items-center justify-center rounded-full bg-accent text-cream shadow-[0_8px_24px_rgba(0,0,0,0.35)]">
-                <Plus size={24} strokeWidth={2.5} />
+            <div className="relative mt-2 lg:mt-0">
+              <span className="absolute -left-4 -top-4 z-20 hidden sm:flex h-14 w-14 items-center justify-center rounded-full bg-accent text-surface shadow-[0_8px_24px_rgba(0,0,0,0.45)]">
+                <ShieldCheck size={22} strokeWidth={2} />
               </span>
-
-              <div className="relative overflow-hidden rounded-3xl bg-surface-alt aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/5]">
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full blur-[50px]"
-                  style={{
-                    background: "radial-gradient(circle, #E8825A 0%, #C25B3A 45%, rgba(143,63,38,0) 75%)",
-                  }}
+              <div className="relative overflow-hidden rounded-2xl aspect-[4/3] sm:aspect-[5/4]">
+                <Image
+                  src="/images/hero-porsche.jpg"
+                  alt="Чёрный спортивный автомобиль — студийное фото"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 45vw, 90vw"
+                  className="object-cover"
                 />
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -left-14 bottom-6 h-44 w-44 rounded-full blur-[40px] opacity-80"
-                  style={{
-                    background: "radial-gradient(circle, #E8825A 0%, #C25B3A 50%, rgba(143,63,38,0) 75%)",
-                  }}
-                />
-                <div className="vignette" />
-                <svg
-                  viewBox="0 0 400 200"
-                  aria-hidden="true"
-                  className="absolute inset-0 m-auto w-3/4 h-auto text-cream/[0.14]"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={3}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M40 140 L40 120 Q40 100 60 95 L110 80 Q140 55 180 55 L260 55 Q300 55 320 80 L350 95 Q370 100 370 120 L370 140" />
-                  <path d="M40 140 L370 140" />
-                  <path d="M120 95 L150 65 L230 65 L255 95 Z" />
-                  <circle cx="100" cy="140" r="22" />
-                  <circle cx="300" cy="140" r="22" />
-                </svg>
-
-                <div className="absolute top-4 left-4 sm:top-6 sm:left-6 inline-flex items-center gap-2 rounded-full border border-cream/10 bg-surface-alt px-3 py-1.5">
-                  <ShieldCheck size={14} strokeWidth={1.5} className="text-cream" />
-                  <span className="text-[11px] font-bold text-cream">Гарантия качества</span>
-                </div>
-
-                <div className="hidden sm:flex absolute top-6 right-6 flex-col items-end gap-1 text-right">
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-cream">Точно</span>
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-cream/90">Быстро</span>
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-cream/80">Надёжно</span>
-                </div>
-
-                <div className="absolute left-4 bottom-4 sm:left-6 sm:bottom-6 w-[170px] rounded-2xl border border-cream/10 bg-surface-alt p-4">
-                  <p className="text-xs text-cream/75">Точность подбора</p>
-                  <p className="mt-1 text-lg font-extrabold text-cream">98%</p>
-                  <div className="mt-2 h-1.5 w-full rounded-full bg-cream/10">
-                    <div className="h-full w-[98%] rounded-full bg-accent" />
-                  </div>
-                </div>
-
-                <div className="hidden sm:block absolute right-6 bottom-6 w-[150px] rounded-2xl border border-cream/10 bg-surface-alt p-4">
-                  <p className="text-2xl font-extrabold text-cream">1500+</p>
-                  <p className="mt-0.5 text-[11px] text-cream/75">авто в базе</p>
-                  <span className="mt-2 inline-block rounded bg-cream/10 px-1.5 py-0.5 text-[9px] font-bold tracking-wide text-cream/80">
-                    TODO: реальная цифра
-                  </span>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-cream">Категории</h2>
-        <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-          {SERVICE_CATEGORIES.map((cat, i) => {
-            const Icon = (Icons as unknown as Record<string, LucideIcon>)[cat.icon];
-            const href = cat.slug === "parts" ? "/catalog" : `/providers?category=${cat.slug}`;
-            return (
+      {/* Блок 2 — "Категории": единственная светлая секция на сайте */}
+      <section className="mt-14 sm:mt-20 bg-accent">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 sm:py-18">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-bold uppercase tracking-[0.2em] text-surface/60">Услуги</span>
+                <span className="h-px w-8 bg-surface/30" />
+              </div>
+              <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-surface">Категории</h2>
+            </div>
+            <Link
+              href="/providers"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-surface/20 px-5 py-2.5 text-sm font-bold text-surface hover:bg-surface/5 transition-colors"
+            >
+              Смотреть все услуги
+              <ArrowUpRight size={15} strokeWidth={2.5} />
+            </Link>
+          </div>
+
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+            {categoryCards.map((card, i) => (
               <Link
-                key={cat.slug}
-                href={href}
+                key={card.number}
+                href={card.href}
                 style={{ animationDelay: `${i * 40}ms` }}
-                className="reveal group flex flex-col items-center gap-3 rounded-2xl border border-cream/10 bg-surface-alt p-5 text-center transition-all hover:border-accent/30 hover:shadow-[0_0_32px_-10px_rgba(194,91,58,0.35)]"
+                className="reveal group flex flex-col overflow-hidden rounded-2xl border border-cream/10 bg-surface-alt transition-all hover:border-accent/50 hover:shadow-[0_0_32px_-10px_rgba(232,232,232,0.14)]"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-cream/10 text-cream/75 group-hover:bg-accent group-hover:text-cream group-hover:border-accent transition-colors">
-                  <Icon size={22} strokeWidth={1.5} />
-                </span>
-                <span className="text-sm font-bold text-cream">{cat.label}</span>
+                <div className="relative flex h-32 items-center justify-center bg-surface">
+                  <span className="absolute left-3 top-3 text-2xl font-extrabold text-cream/25">{card.number}</span>
+                  <card.icon size={40} strokeWidth={1.25} className="text-cream/80" />
+                </div>
+                <div className="p-5">
+                  <div className="h-0.5 w-6 bg-accent" />
+                  <h3 className="mt-3 font-extrabold tracking-tight text-cream">{card.title}</h3>
+                  <p className="mt-1.5 text-sm text-sage-100">{card.description}</p>
+                  <ArrowUpRight size={16} strokeWidth={2} className="mt-3 text-cream/50 group-hover:text-cream transition-colors" />
+                </div>
               </Link>
-            );
-          })}
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Блок 3 — "Почему мы" + форма записи */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          <div>
+            <div className="flex items-center gap-3">
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-sage-100">Почему мы</span>
+              <span className="h-px w-8 bg-sage-100/40" />
+            </div>
+            <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-cream">
+              Сервис, которому доверяют
+            </h2>
+            <p className="mt-4 text-sage-100 max-w-md">
+              Мы ценим ваше время и доверие. Держим слово, работаем прозрачно и на результат.
+            </p>
+
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
+              {advantages.map((item) => (
+                <div key={item.title}>
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full border border-sage-100/40 text-cream">
+                    <item.icon size={18} strokeWidth={1.5} />
+                  </span>
+                  <h3 className="mt-3 font-extrabold tracking-tight text-cream text-sm">{item.title}</h3>
+                  <p className="mt-1.5 text-sm text-sage-100">{item.description}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-4 rounded-2xl border border-cream/10 bg-surface-alt p-5">
+              <div className="flex items-center gap-3">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-sage-100/40 text-cream text-sm font-extrabold">
+                  G
+                </span>
+                <div>
+                  <p className="text-lg font-extrabold text-cream leading-tight">4,9</p>
+                  <div className="flex items-center gap-0.5 mt-0.5">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} size={12} className="fill-accent text-accent" />
+                    ))}
+                  </div>
+                  <p className="text-[11px] text-sage-100 mt-0.5">на основе 312 отзывов (пример)</p>
+                </div>
+              </div>
+              <div className="sm:border-l sm:border-cream/10 sm:pl-4">
+                <p className="text-sm text-cream/90">«Отличный сервис! Быстро нашли проблему, всё объяснили и сделали раньше срока.»</p>
+                <p className="mt-1 text-xs text-sage-100">— Клиент SCALUP, пример отзыва</p>
+              </div>
+            </div>
+          </div>
+
+          <LeadForm />
         </div>
       </section>
 
@@ -165,7 +242,7 @@ export default function Home() {
           <div className="flex gap-3 shrink-0">
             <Link
               href="/catalog"
-              className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-5 py-2.5 text-sm font-bold text-cream hover:bg-accent-hover transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-5 py-2.5 text-sm font-bold text-surface hover:bg-accent-hover transition-colors"
             >
               Каталог товаров
               <ArrowUpRight size={15} strokeWidth={2.5} />

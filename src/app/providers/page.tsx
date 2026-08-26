@@ -41,7 +41,7 @@ export default async function ProvidersPage({ searchParams }: Props) {
         <Link
           href="/providers"
           className={`rounded-full px-4 py-2 text-sm font-bold transition-colors ${
-            !params.category ? "bg-accent text-cream" : "border border-cream/15 text-cream/90 hover:bg-cream/5"
+            !params.category ? "bg-accent text-surface" : "border border-cream/15 text-cream/90 hover:bg-cream/5"
           }`}
         >
           Все категории
@@ -51,7 +51,7 @@ export default async function ProvidersPage({ searchParams }: Props) {
             key={c.slug}
             href={`/providers?category=${c.slug}`}
             className={`rounded-full px-4 py-2 text-sm font-bold transition-colors ${
-              params.category === c.slug ? "bg-accent text-cream" : "border border-cream/15 text-cream/90 hover:bg-cream/5"
+              params.category === c.slug ? "bg-accent text-surface" : "border border-cream/15 text-cream/90 hover:bg-cream/5"
             }`}
           >
             {c.label}
@@ -69,7 +69,7 @@ export default async function ProvidersPage({ searchParams }: Props) {
             <Link
               key={p.id}
               href={`/providers/${p.id}`}
-              className="flex flex-col rounded-2xl border border-cream/10 bg-surface-alt p-4 transition-all hover:border-accent/30 hover:shadow-[0_0_32px_-10px_rgba(194,91,58,0.35)]"
+              className="flex flex-col rounded-2xl border border-cream/10 bg-surface-alt p-4 transition-all hover:border-accent/30 hover:shadow-[0_0_32px_-10px_rgba(232,232,232,0.14)]"
             >
               <div className="flex items-start justify-between gap-2">
                 <h3 className="font-extrabold tracking-tight text-cream">{p.businessName}</h3>
