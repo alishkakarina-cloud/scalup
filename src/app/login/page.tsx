@@ -43,7 +43,7 @@ function LoginForm() {
 
   return (
     <div className="mx-auto max-w-md px-4 py-14 sm:py-20">
-      <h1 className="text-2xl font-extrabold tracking-tight text-cream">Вход</h1>
+      <h1 className="font-display text-2xl font-extrabold tracking-tight text-cream">Вход</h1>
       <p className="mt-2 text-cream/90">Войдите в аккаунт клиента, исполнителя или администратора.</p>
 
       <form onSubmit={handleSubmit} className="mt-6 space-y-4 rounded-2xl border border-cream/10 bg-surface-alt p-6">

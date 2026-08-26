@@ -17,7 +17,7 @@ export default async function AdminDisputesPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-extrabold tracking-tight text-cream">Споры</h1>
+      <h1 className="font-display text-2xl font-extrabold tracking-tight text-cream">Споры</h1>
       <div className="mt-6 space-y-2">
         {disputes.length === 0 ? (
           <p className="text-sage-100">Споров нет.</p>

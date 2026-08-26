@@ -38,7 +38,7 @@ export default function AdminPayoutsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-extrabold tracking-tight text-cream">Заявки на выплату</h1>
+      <h1 className="font-display text-2xl font-extrabold tracking-tight text-cream">Заявки на выплату</h1>
       <div className="mt-6 space-y-3">
         {payouts.length === 0 ? (
           <p className="text-sage-100">Заявок нет.</p>

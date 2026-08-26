@@ -8,7 +8,7 @@ export default async function AccountPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-      <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-cream">Личный кабинет</h1>
+      <h1 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-cream">Личный кабинет</h1>
       <p className="mt-2 text-cream/90">{user.name} · {user.email}</p>
 
       <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">

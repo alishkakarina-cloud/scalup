@@ -22,7 +22,7 @@ export default async function DashboardHomePage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-extrabold tracking-tight text-cream">Здравствуйте, {user.name}</h1>
+      <h1 className="font-display text-2xl font-extrabold tracking-tight text-cream">Здравствуйте, {user.name}</h1>
       <p className="mt-1 text-cream/90">{user.provider.businessName}</p>
 
       <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">

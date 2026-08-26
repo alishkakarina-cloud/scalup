@@ -23,7 +23,7 @@ export default async function AdminOverviewPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-extrabold tracking-tight text-cream">Обзор</h1>
+      <h1 className="font-display text-2xl font-extrabold tracking-tight text-cream">Обзор</h1>
       <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {cards.map((c) => (
           <div key={c.label} className="rounded-2xl border border-cream/10 bg-surface-alt p-5">

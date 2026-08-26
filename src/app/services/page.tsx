@@ -9,7 +9,7 @@ export default function ServicesPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-      <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-cream">Каталог услуг</h1>
+      <h1 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-cream">Каталог услуг</h1>
       <p className="mt-1 text-cream/90">
         Выберите категорию услуги СТО рядом с вами.
       </p>

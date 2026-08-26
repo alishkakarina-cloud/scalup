@@ -30,7 +30,7 @@ export default function AdminProvidersPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-extrabold tracking-tight text-cream">Исполнители</h1>
+      <h1 className="font-display text-2xl font-extrabold tracking-tight text-cream">Исполнители</h1>
       <div className="mt-6 space-y-2">
         {providers.map((p) => (
           <div key={p.id} className="flex items-center justify-between gap-4 rounded-xl border border-cream/10 bg-surface-alt px-4 py-3">

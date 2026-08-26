@@ -65,7 +65,7 @@ export default function ServicesPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-extrabold tracking-tight text-cream">Мои услуги</h1>
+      <h1 className="font-display text-2xl font-extrabold tracking-tight text-cream">Мои услуги</h1>
 
       <form onSubmit={handleSubmit} className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-2xl border border-cream/10 bg-surface-alt p-5">
         <div>

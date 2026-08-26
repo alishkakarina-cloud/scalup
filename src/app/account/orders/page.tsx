@@ -17,7 +17,7 @@ export default async function ClientOrdersPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-      <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-cream">Мои заказы</h1>
+      <h1 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-cream">Мои заказы</h1>
 
       {orders.length === 0 ? (
         <div className="mt-8 rounded-2xl border border-dashed border-cream/15 p-12 text-center text-cream/90">

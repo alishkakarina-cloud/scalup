@@ -38,7 +38,7 @@ export default function RegisterPage() {
 
   return (
     <div className="mx-auto max-w-md px-4 py-14 sm:py-20">
-      <h1 className="text-2xl font-extrabold tracking-tight text-cream">Регистрация</h1>
+      <h1 className="font-display text-2xl font-extrabold tracking-tight text-cream">Регистрация</h1>
       <p className="mt-2 text-cream/90">Создайте аккаунт клиента или исполнителя.</p>
 
       <div className="mt-6 flex gap-2">

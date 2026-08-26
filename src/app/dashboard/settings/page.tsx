@@ -30,7 +30,7 @@ export default function SettingsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-extrabold tracking-tight text-cream">Настройки</h1>
+      <h1 className="font-display text-2xl font-extrabold tracking-tight text-cream">Настройки</h1>
       <form onSubmit={handleSubmit} className="mt-6 max-w-md space-y-4 rounded-2xl border border-cream/10 bg-surface-alt p-5">
         <h2 className="font-bold text-cream">Смена пароля</h2>
         <div>

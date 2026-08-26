@@ -7,7 +7,7 @@ export function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
 
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-cream/10 bg-surface-alt p-4 transition-all hover:border-accent/30 hover:shadow-[0_0_32px_-10px_rgba(232,232,232,0.18)]">
+    <div className="card-lift flex h-full flex-col rounded-2xl border border-cream/10 bg-surface-alt p-4 hover:border-accent/30">
       <div className="relative h-36 w-full overflow-hidden rounded-xl">
         <div
           aria-hidden="true"
@@ -28,7 +28,7 @@ export function ProductCard({ product }: { product: Product }) {
           <span className="h-1.5 w-1.5 rounded-full bg-accent" />
           {product.category}
         </span>
-        <h3 className="mt-1.5 font-extrabold tracking-tight text-cream leading-snug">{product.name}</h3>
+        <h3 className="font-display mt-1.5 text-cream leading-snug">{product.name}</h3>
         <p className="mt-0.5 text-xs text-sage-100">Подходит: {product.brandFit}</p>
 
         <div className="mt-3 flex items-baseline gap-2">

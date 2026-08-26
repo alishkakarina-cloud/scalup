@@ -16,7 +16,7 @@ export default async function ProviderReviewsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-extrabold tracking-tight text-cream">Отзывы</h1>
+      <h1 className="font-display text-2xl font-extrabold tracking-tight text-cream">Отзывы</h1>
       {reviews.length === 0 ? (
         <p className="mt-6 text-sage-100">Отзывов пока нет.</p>
       ) : (

@@ -17,6 +17,10 @@
   --color-sage-200: #838387;
   --color-sage-300: #616165;
   --font-sans: "Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
+  /* ONE FORCE недоступен как веб-шрифт (платный, din-studio.com) — Racing Sans One
+     ближайший бесплатный аналог того же гоночного угловатого характера, только
+     для крупных акцентных заголовков (см. класс .font-display ниже), не для текста. */
+  --font-display: "Racing Sans One", "Manrope", sans-serif;
 }
 
 html {
@@ -48,10 +52,89 @@ body {
   color: var(--color-surface);
 }
 
-/* Реалистичная глубина: карточки — утопленная тёмная панель + мягкая приподнимающая тень.
-   Матчим по подстроке класса, чтобы не переписывать box-shadow в каждом компоненте отдельно. */
+/* Реалистичная глубина (референс AV): карточки — утопленная тёмная панель, мягкая
+   приподнимающая тень и едва заметный блик по верхнему краю (имитация отражения
+   света на стекле). Матчим по подстроке класса, чтобы не переписывать box-shadow
+   в каждом компоненте отдельно — так эффект применяется сразу везде на сайте. */
 [class*="bg-surface-alt"] {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  box-shadow:
+    inset 0 1px 0 rgba(245, 245, 245, 0.06),
+    0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Стекло (glassmorphism) для акцентных панелей — тёмная полупрозрачная заливка,
+   как строка статистики в hero референса AV. Само размытие (backdrop-blur)
+   вешается в JSX через utility-класс Tailwind (backdrop-blur-*), а не тут:
+   сырое свойство backdrop-filter в этом файле вырезается сборщиком (Lightning
+   CSS) при билде — utility-класс компилируется отдельно и всегда доезжает. */
+.glass {
+  background: linear-gradient(180deg, rgba(245, 245, 245, 0.05), rgba(245, 245, 245, 0.015));
+  border: 1px solid rgba(245, 245, 245, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Плоские заливки accent (кнопки, круглые бейджи с bg-accent) — заменяем на
+   градиент сверху вниз для эффекта выпуклости + тень под элементом. Substring-
+   селектор покрывает все кнопки сайта разом, без правок в каждом компоненте. */
+[class*="bg-accent"]:not([class*="bg-accent/"]) {
+  background-image: linear-gradient(180deg, #f5f5f5 0%, #dcdcdc 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 10px 24px -8px rgba(0, 0, 0, 0.5);
+}
+[class*="bg-accent"]:not([class*="bg-accent/"]):hover {
+  background-image: linear-gradient(180deg, #efefef 0%, #d0d0d0 100%);
+}
+[class*="bg-accent"]:not([class*="bg-accent/"]):active {
+  background-image: linear-gradient(180deg, #dcdcdc 0%, #cacaca 100%);
+}
+
+/* Круглые бейджи-обводки под иконки (статистика hero, "почему мы") — вместо
+   плоского прозрачного фона: лёгкий градиент + внутренняя тень (эффект
+   вдавленности), как у иконок в блоке TOOLS референса AV. */
+[class*="border-sage-100/40"] {
+  background-image: radial-gradient(circle at 35% 30%, rgba(245, 245, 245, 0.1), rgba(245, 245, 245, 0.02) 70%);
+  box-shadow:
+    inset 0 2px 5px rgba(0, 0, 0, 0.4),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Приподнимание интерактивных карточек при hover — вешается точечно классом,
+   не на все bg-surface-alt разом (не всё вокруг кликабельно). */
+.card-lift {
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, border-color 0.25s ease-out;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    inset 0 1px 0 rgba(245, 245, 245, 0.08),
+    0 28px 48px -12px rgba(0, 0, 0, 0.6);
+}
+
+/* Диагональный металлический блик для футера — как подсветка в блоке
+   "LET'S CREATE SOMETHING EXTRAORDINARY" референса AV. */
+.footer-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 35%, rgba(245, 245, 245, 0.06) 50%, transparent 65%);
+}
+
+/* Декоративная дуга вокруг фото (hero) — тонкое полукольцо низкой яркости,
+   как элемент у фото в референсе AV. Чистый CSS, без лишней разметки. */
+.photo-ring {
+  position: absolute;
+  border: 1px solid rgba(245, 245, 245, 0.14);
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+/* Акцентные крупные заголовки — ONE FORCE / Racing Sans One. Только для
+   дисплейного текста (H1, названия товаров, крупные цифры статистики):
+   мелкий/обычный текст на этот шрифт НЕ переводится. */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
 }
 
 /* Виньетка для секций с "фото" — накладывается отдельным слоем поверх контейнера */

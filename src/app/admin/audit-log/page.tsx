@@ -11,7 +11,7 @@ export default async function AdminAuditLogPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-extrabold tracking-tight text-cream">Audit log</h1>
+      <h1 className="font-display text-2xl font-extrabold tracking-tight text-cream">Audit log</h1>
       <p className="mt-1 text-cream/90">Каждое админ-действие: кто, когда, что изменил, было/стало.</p>
 
       <div className="mt-6 space-y-2">

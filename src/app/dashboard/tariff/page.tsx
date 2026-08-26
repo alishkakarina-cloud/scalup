@@ -3,7 +3,7 @@ import { DEFAULT_COMMISSION_PERCENT } from "../../../lib/finance";
 export default function TariffPage() {
   return (
     <div>
-      <h1 className="text-2xl font-extrabold tracking-tight text-cream">Тариф</h1>
+      <h1 className="font-display text-2xl font-extrabold tracking-tight text-cream">Тариф</h1>
       <div className="mt-6 max-w-md rounded-2xl border border-cream/10 bg-surface-alt p-6">
         <p className="text-sm text-sage-100">Комиссия SCALUP с каждого заказа</p>
         <p className="mt-1 text-4xl font-extrabold tracking-tight text-cream">{DEFAULT_COMMISSION_PERCENT.toString()}%</p>

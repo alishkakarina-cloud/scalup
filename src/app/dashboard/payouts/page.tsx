@@ -58,7 +58,7 @@ export default function PayoutsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-extrabold tracking-tight text-cream">Выплаты</h1>
+      <h1 className="font-display text-2xl font-extrabold tracking-tight text-cream">Выплаты</h1>
 
       <form onSubmit={handleSubmit} className="mt-6 max-w-md rounded-2xl border border-cream/10 bg-surface-alt p-5 space-y-3">
         <p className="text-sm text-sage-100">Доступно к выводу: <span className="font-extrabold text-cream">${balance?.available ?? "…"}</span></p>

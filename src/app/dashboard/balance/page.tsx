@@ -17,7 +17,7 @@ export default function BalancePage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-extrabold tracking-tight text-cream">Баланс</h1>
+      <h1 className="font-display text-2xl font-extrabold tracking-tight text-cream">Баланс</h1>
       <p className="mt-1 text-cream/90">Комиссия SCALUP (10%) уже вычтена из сумм ниже — это то, что причитается вам.</p>
 
       <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">

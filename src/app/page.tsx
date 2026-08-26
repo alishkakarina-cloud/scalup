@@ -72,9 +72,9 @@ export default function Home() {
 
           <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-6 items-center p-6 sm:p-10 lg:p-14">
             <div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.08]">
-                <span className="block font-normal text-cream">Найдите специалиста</span>
-                <span className="block font-extrabold text-cream">для своего автомобиля</span>
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.08]">
+                <span className="block text-cream/90">Найдите специалиста</span>
+                <span className="block text-cream">для своего автомобиля</span>
               </h1>
 
               <p className="mt-5 text-sage-100 text-base sm:text-lg max-w-md">
@@ -98,14 +98,17 @@ export default function Home() {
                 </Link>
               </div>
 
-              <div className="mt-10 flex flex-wrap gap-x-8 gap-y-5">
-                {stats.map((stat) => (
-                  <div key={stat.label} className="flex items-center gap-3">
+              <div className="glass mt-10 flex flex-wrap gap-x-8 gap-y-5 rounded-2xl px-5 py-4 backdrop-blur-md sm:backdrop-blur-xl">
+                {stats.map((stat, i) => (
+                  <div
+                    key={stat.label}
+                    className={`flex items-center gap-3 ${i > 0 ? "sm:border-l sm:border-cream/10 sm:pl-8" : ""}`}
+                  >
                     <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-sage-100/40 text-cream">
                       <stat.icon size={18} strokeWidth={1.5} />
                     </span>
                     <div>
-                      <p className="text-sm font-extrabold text-cream leading-tight">{stat.value}</p>
+                      <p className="font-display text-base text-cream leading-tight">{stat.value}</p>
                       <p className="text-xs text-sage-100 leading-tight">{stat.label}</p>
                     </div>
                   </div>
@@ -114,10 +117,14 @@ export default function Home() {
             </div>
 
             <div className="relative mt-2 lg:mt-0">
+              <div
+                aria-hidden="true"
+                className="photo-ring absolute -right-10 -top-10 hidden h-[120%] w-[70%] lg:block"
+              />
               <span className="absolute -left-4 -top-4 z-20 hidden sm:flex h-14 w-14 items-center justify-center rounded-full bg-accent text-surface shadow-[0_8px_24px_rgba(0,0,0,0.45)]">
                 <ShieldCheck size={22} strokeWidth={2} />
               </span>
-              <div className="relative overflow-hidden rounded-2xl aspect-[4/3] sm:aspect-[5/4]">
+              <div className="relative overflow-hidden rounded-2xl aspect-[4/3] sm:aspect-[5/4] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)]">
                 <Image
                   src="/images/hero-porsche.jpg"
                   alt="Чёрный спортивный автомобиль — студийное фото"
@@ -158,10 +165,13 @@ export default function Home() {
                 key={card.number}
                 href={card.href}
                 style={{ animationDelay: `${i * 40}ms` }}
-                className="reveal group flex flex-col overflow-hidden rounded-2xl border border-cream/10 bg-surface-alt transition-all hover:border-accent/50 hover:shadow-[0_0_32px_-10px_rgba(232,232,232,0.14)]"
+                className="reveal card-lift group flex flex-col overflow-hidden rounded-2xl border border-cream/10 bg-surface-alt hover:border-accent/40"
               >
-                <div className="relative flex h-32 items-center justify-center bg-surface">
-                  <span className="absolute left-3 top-3 text-2xl font-extrabold text-cream/25">{card.number}</span>
+                <div
+                  className="relative flex h-32 items-center justify-center"
+                  style={{ background: "radial-gradient(circle at 30% 20%, var(--color-surface-light), var(--color-surface) 75%)" }}
+                >
+                  <span className="absolute left-3 top-3 font-display text-2xl text-cream/25">{card.number}</span>
                   <card.icon size={40} strokeWidth={1.25} className="text-cream/80" />
                 </div>
                 <div className="p-5">
@@ -177,8 +187,13 @@ export default function Home() {
       </section>
 
       {/* Блок 3 — "Почему мы" + форма записи */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+      <section className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20 overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-32 -left-20 h-80 w-80 rounded-full blur-[100px] opacity-[0.07]"
+          style={{ background: "radial-gradient(circle, #F5F5F5 0%, rgba(245,245,245,0) 70%)" }}
+        />
+        <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <div>
             <div className="flex items-center gap-3">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-sage-100">Почему мы</span>
@@ -209,7 +224,7 @@ export default function Home() {
                   G
                 </span>
                 <div>
-                  <p className="text-lg font-extrabold text-cream leading-tight">4,9</p>
+                  <p className="font-display text-lg text-cream leading-tight">4,9</p>
                   <div className="flex items-center gap-0.5 mt-0.5">
                     {Array.from({ length: 5 }).map((_, i) => (
                       <Star key={i} size={12} className="fill-accent text-accent" />

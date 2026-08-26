@@ -66,7 +66,7 @@ export default function ProviderProfilePage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-extrabold tracking-tight text-cream">Профиль</h1>
+      <h1 className="font-display text-2xl font-extrabold tracking-tight text-cream">Профиль</h1>
       {profile.verified && (
         <p className="mt-2 inline-block rounded-full bg-accent/15 px-3 py-1 text-xs font-bold text-cream">Проверенный исполнитель</p>
       )}

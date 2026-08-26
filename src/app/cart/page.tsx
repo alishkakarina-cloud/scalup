@@ -68,7 +68,7 @@ export default function CartPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-      <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-cream">Корзина</h1>
+      <h1 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-cream">Корзина</h1>
 
       <div className="mt-8 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8">
         <div className="space-y-3">

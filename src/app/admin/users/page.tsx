@@ -13,7 +13,7 @@ export default async function AdminUsersPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-extrabold tracking-tight text-cream">Пользователи</h1>
+      <h1 className="font-display text-2xl font-extrabold tracking-tight text-cream">Пользователи</h1>
       <div className="mt-6 overflow-x-auto rounded-2xl border border-cream/10 bg-surface-alt">
         <table className="w-full text-sm">
           <thead>

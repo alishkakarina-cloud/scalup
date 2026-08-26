@@ -54,7 +54,7 @@ export default async function ProviderDetailPage({ params }: { params: Promise<{
             </div>
             <div className="flex-1">
               <div className="flex flex-wrap items-center gap-3">
-                <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-cream">{provider.businessName}</h1>
+                <h1 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-cream">{provider.businessName}</h1>
                 {provider.verified && (
                   <span className="flex items-center gap-1 rounded-full bg-accent/15 px-2.5 py-1 text-xs font-bold text-cream">
                     <ShieldCheck size={13} /> Проверенный

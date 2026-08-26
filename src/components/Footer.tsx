@@ -3,8 +3,9 @@ import { Wrench, ArrowRight } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="mt-16 bg-surface border-t border-cream/10 text-cream/90">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+    <footer className="relative mt-16 overflow-hidden bg-surface border-t border-cream/10 text-cream/90">
+      <div aria-hidden="true" className="footer-sheen" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <Link href="/" className="flex items-center gap-2">
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-surface">

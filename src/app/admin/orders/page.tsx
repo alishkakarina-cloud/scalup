@@ -13,7 +13,7 @@ export default async function AdminOrdersPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-extrabold tracking-tight text-cream">Все заказы</h1>
+      <h1 className="font-display text-2xl font-extrabold tracking-tight text-cream">Все заказы</h1>
       <div className="mt-6 space-y-2">
         {orders.map((o) => (
           <Link
