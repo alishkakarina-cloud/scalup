@@ -1,12 +1,3 @@
-export interface Car {
-  brand: string;
-  model: string;
-  year: string;
-  engine: string;
-  plate: string;
-  vin?: string;
-}
-
 export type ProductCategory =
   | "Запчасти"
   | "Масла"
@@ -26,21 +17,6 @@ export interface Product {
   brandFit: string;
   model?: string;
   icon: string;
-}
-
-export type ServiceCategory =
-  | "Замена масла"
-  | "Диагностика"
-  | "Ходовая"
-  | "Кондиционер"
-  | "Шиномонтаж"
-  | "Мойка"
-  | "Детейлинг"
-  | "Эвакуатор";
-
-export interface ServicePlaceholder {
-  id: string;
-  category: ServiceCategory;
 }
 
 export type CartItem =

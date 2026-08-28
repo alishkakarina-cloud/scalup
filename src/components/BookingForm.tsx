@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import type { CurrentUser } from "../lib/useCurrentUser";
+import { useGarage } from "../context/GarageContext";
 
 interface ServiceOption {
   id: string;
@@ -20,9 +21,20 @@ interface Vehicle {
 const inputClass =
   "w-full rounded-xl border border-cream/15 bg-surface-light px-3.5 py-2.5 text-sm text-cream outline-none focus:border-accent transition-colors";
 
-export function BookingForm({ services, user }: { services: ServiceOption[]; user: CurrentUser | null }) {
+export function BookingForm({
+  services,
+  user,
+  initialServiceId,
+}: {
+  services: ServiceOption[];
+  user: CurrentUser | null;
+  initialServiceId?: string;
+}) {
   const router = useRouter();
-  const [serviceId, setServiceId] = useState(services[0]?.id ?? "");
+  const [serviceId, setServiceId] = useState(
+    (initialServiceId && services.some((s) => s.id === initialServiceId) ? initialServiceId : services[0]?.id) ?? ""
+  );
+  const { selectedVehicleId } = useGarage();
   const [vehicleId, setVehicleId] = useState("");
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [scheduledDate, setScheduledDate] = useState("");
@@ -41,6 +53,14 @@ export function BookingForm({ services, user }: { services: ServiceOption[]; use
         .catch(() => {});
     }
   }, [user]);
+
+  // Авто, выбранное как активное в "Моём гараже", подставляется в форму
+  // записи по умолчанию — пользователь может сменить его в самой форме.
+  useEffect(() => {
+    if (selectedVehicleId && vehicles.some((v) => v.id === selectedVehicleId)) {
+      setVehicleId((current) => current || selectedVehicleId);
+    }
+  }, [selectedVehicleId, vehicles]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

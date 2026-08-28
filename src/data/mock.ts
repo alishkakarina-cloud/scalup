@@ -1,4 +1,4 @@
-import type { Product, ServiceCategory, ServicePlaceholder } from "../types";
+import type { Product } from "../types";
 
 export const categories = [
   { name: "Запчасти", icon: "Cog" },
@@ -128,23 +128,5 @@ export const products: Product[] = [
     brandFit: "Универсальное",
     icon: "CloudRain",
   },
-];
-
-export const serviceCategories: ServiceCategory[] = [
-  "Замена масла",
-  "Диагностика",
-  "Ходовая",
-  "Кондиционер",
-  "Шиномонтаж",
-  "Мойка",
-  "Детейлинг",
-  "Эвакуатор",
-];
-
-export const servicePlaceholders: ServicePlaceholder[] = [
-  { id: "s1", category: "Замена масла" },
-  { id: "s2", category: "Диагностика" },
-  { id: "s3", category: "Ходовая" },
-  { id: "s4", category: "Шиномонтаж" },
 ];
 

@@ -73,27 +73,27 @@ export default function Home() {
           <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-6 items-center p-6 sm:p-10 lg:p-14">
             <div>
               <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.08]">
-                <span className="block text-cream/90">Найдите специалиста</span>
-                <span className="block text-cream">для своего автомобиля</span>
+                <span className="block text-cream/90">Нужен ремонт автомобиля?</span>
+                <span className="block text-cream">Найдём проверенного специалиста или СТО рядом с вами</span>
               </h1>
 
               <p className="mt-5 text-sage-100 text-base sm:text-lg max-w-md">
-                Запчасти, масла, шины и услуги проверенных СТО — подобранные точно под твой автомобиль.
+                СТО, диагностика, масло, электрика, кондиционер, запчасти — в одном месте.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
-                <a
-                  href="#booking"
+                <Link
+                  href="/services"
                   className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-6 py-3 text-sm font-bold text-surface hover:bg-accent-hover transition-colors"
                 >
-                  Записаться
+                  Найти услугу
                   <ArrowRight size={15} strokeWidth={2.5} />
-                </a>
+                </Link>
                 <Link
                   href="/providers"
                   className="inline-flex items-center gap-1.5 rounded-xl border border-sage-100 px-6 py-3 text-sm font-bold text-cream hover:bg-cream/5 transition-colors"
                 >
-                  Услуги
+                  Найти СТО
                   <ArrowRight size={15} strokeWidth={2.5} />
                 </Link>
               </div>

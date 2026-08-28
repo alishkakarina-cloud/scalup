@@ -97,6 +97,7 @@ model Provider {
   description   String?
   categories    String[]
   city          String?
+  district      String?
   photoUrl      String?
   verified      Boolean  @default(false)
   mobileService Boolean  @default(false)
@@ -121,6 +122,7 @@ model Service {
   name        String
   description String?
   price       Decimal  @db.Decimal(10, 2)
+  durationMinutes Int?
   photoUrl    String?
   active      Boolean  @default(true)
   createdAt   DateTime @default(now())

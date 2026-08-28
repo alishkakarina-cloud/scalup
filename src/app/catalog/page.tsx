@@ -1,9 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { SlidersHorizontal, X } from "lucide-react";
 import { products, districts, carBrands, carModels } from "../../data/mock";
 import { ProductCard } from "../../components/ProductCard";
+import { VehicleBanner } from "../../components/VehicleBanner";
+import { useGarage } from "../../context/GarageContext";
 import type { ProductCategory } from "../../types";
 
 const categoryOptions: ProductCategory[] = ["Запчасти", "Масла", "Шины", "Аксессуары"];
@@ -11,6 +13,7 @@ const selectClass =
   "w-full rounded-xl border border-cream/15 bg-surface-light px-3 py-2 text-sm text-cream outline-none focus:border-accent transition-colors";
 
 export default function CatalogPage() {
+  const { selectedVehicle } = useGarage();
   const [brand, setBrand] = useState<string>("Все");
   const [model, setModel] = useState<string>("Все");
   const [category, setCategory] = useState<string>("Все");
@@ -18,6 +21,17 @@ export default function CatalogPage() {
   const [maxPrice, setMaxPrice] = useState(100);
   const [inStockOnly, setInStockOnly] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [autoFilledFor, setAutoFilledFor] = useState<string | null>(null);
+
+  // Авто из "Моего гаража" предзаполняет марку/модель ровно один раз на
+  // каждое новое активное авто — дальше пользователь свободно меняет фильтры
+  // руками, повторный автозаход не перетирает его выбор.
+  useEffect(() => {
+    if (!selectedVehicle || autoFilledFor === selectedVehicle.id) return;
+    setBrand(carBrands.includes(selectedVehicle.brand) ? selectedVehicle.brand : "Все");
+    setModel(selectedVehicle.model);
+    setAutoFilledFor(selectedVehicle.id);
+  }, [selectedVehicle, autoFilledFor]);
 
   const filtered = useMemo(() => {
     return products.filter((p) => {
@@ -122,6 +136,10 @@ export default function CatalogPage() {
         >
           <SlidersHorizontal size={15} strokeWidth={1.5} /> Фильтры
         </button>
+      </div>
+
+      <div className="mt-5">
+        <VehicleBanner contextLabel="Показаны товары для" />
       </div>
 
       <div className="mt-8 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-8">

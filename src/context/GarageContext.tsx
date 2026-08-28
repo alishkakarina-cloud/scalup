@@ -1,36 +1,80 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import type { Car } from "../types";
+import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
+
+export interface Vehicle {
+  id: string;
+  brand: string;
+  model: string;
+  year: string;
+  engine: string;
+  plate: string;
+  vin: string | null;
+}
 
 interface GarageContextValue {
-  car: Car | null;
-  setCar: (car: Car) => void;
-  clearCar: () => void;
+  vehicles: Vehicle[];
+  loading: boolean;
+  selectedVehicleId: string | null;
+  selectedVehicle: Vehicle | null;
+  selectVehicle: (id: string | null) => void;
+  refresh: () => Promise<void>;
 }
 
 const GarageContext = createContext<GarageContextValue | null>(null);
-const STORAGE_KEY = "scalup:car";
+const SELECTED_KEY = "scalup:selectedVehicleId";
 
+// Гараж хранится в базе данных (Vehicle, привязан к вошедшему клиенту) — этот
+// контекст лишь кеширует список в памяти вкладки и запоминает, какое авто
+// сейчас "активно" для фильтров каталога/услуг (сам выбор — только localStorage,
+// не персональные данные). Для неавторизованных /api/vehicles вернёт 401 —
+// это ожидаемо, гараж в таком случае просто пуст.
 export function GarageProvider({ children }: { children: ReactNode }) {
-  // На сервере (SSR) localStorage недоступен — состояние гидрируется на клиенте.
-  const [car, setCarState] = useState<Car | null>(null);
+  const [vehicles, setVehicles] = useState<Vehicle[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedVehicleId, setSelectedVehicleId] = useState<string | null>(null);
 
-  useEffect(() => {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) setCarState(JSON.parse(raw) as Car);
+  const refresh = useCallback(async () => {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/vehicles");
+      if (!res.ok) {
+        setVehicles([]);
+        return;
+      }
+      const data = await res.json();
+      const list: Vehicle[] = data.vehicles ?? [];
+      setVehicles(list);
+    } catch {
+      setVehicles([]);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {
-    if (car) localStorage.setItem(STORAGE_KEY, JSON.stringify(car));
-    else localStorage.removeItem(STORAGE_KEY);
-  }, [car]);
+    setSelectedVehicleId(localStorage.getItem(SELECTED_KEY));
+    refresh();
+  }, [refresh]);
 
-  const setCar = (next: Car) => setCarState(next);
-  const clearCar = () => setCarState(null);
+  // Если сохранённого выбора нет или он больше не существует — берём первое авто.
+  useEffect(() => {
+    if (loading) return;
+    if (vehicles.length === 0) return;
+    if (selectedVehicleId && vehicles.some((v) => v.id === selectedVehicleId)) return;
+    setSelectedVehicleId(vehicles[0].id);
+  }, [vehicles, loading, selectedVehicleId]);
+
+  const selectVehicle = (id: string | null) => {
+    setSelectedVehicleId(id);
+    if (id) localStorage.setItem(SELECTED_KEY, id);
+    else localStorage.removeItem(SELECTED_KEY);
+  };
+
+  const selectedVehicle = vehicles.find((v) => v.id === selectedVehicleId) ?? null;
 
   return (
-    <GarageContext.Provider value={{ car, setCar, clearCar }}>
+    <GarageContext.Provider value={{ vehicles, loading, selectedVehicleId, selectedVehicle, selectVehicle, refresh }}>
       {children}
     </GarageContext.Provider>
   );

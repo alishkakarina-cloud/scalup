@@ -51,51 +51,68 @@ async function main() {
       email: "avtomaster@scalup.kg",
       businessName: "СТО АвтоМастер",
       city: "Бишкек",
+      district: "Центр",
       categories: ["sto", "oil", "diagnostics"],
       description: "Комплексное обслуживание легковых автомобилей: диагностика, ходовая часть, замена масла и жидкостей.",
       verified: true,
       services: [
-        { category: "oil", name: "Замена масла", price: 28 },
-        { category: "diagnostics", name: "Диагностика ходовой", price: 15 },
-        { category: "sto", name: "Развал-схождение", price: 22 },
-        { category: "sto", name: "Замена тормозных колодок", price: 20 },
+        { category: "oil", name: "Замена масла", price: 28, durationMinutes: 40 },
+        { category: "diagnostics", name: "Диагностика ходовой", price: 15, durationMinutes: 60 },
+        { category: "sto", name: "Развал-схождение", price: 22, durationMinutes: 50 },
+        { category: "sto", name: "Замена тормозных колодок", price: 20, durationMinutes: 70 },
       ],
     },
     {
       email: "electro@scalup.kg",
       businessName: "АвтоЭлектрика Плюс",
       city: "Бишкек",
+      district: "Джал",
       categories: ["electric", "diagnostics"],
       description: "Диагностика и ремонт электрооборудования любой сложности.",
       verified: true,
       services: [
-        { category: "electric", name: "Диагностика электрики", price: 12 },
-        { category: "electric", name: "Замена аккумулятора", price: 10 },
+        { category: "electric", name: "Диагностика электрики", price: 12, durationMinutes: 45 },
+        { category: "electric", name: "Замена аккумулятора", price: 10, durationMinutes: 20 },
       ],
     },
     {
       email: "shina.tokmok@scalup.kg",
       businessName: "ШинМонтаж Токмок",
       city: "Бишкек",
+      district: "Восток-5",
       categories: ["tires"],
       description: "Шиномонтаж и балансировка колёс.",
       verified: false,
       mobileService: true,
       services: [
-        { category: "tires", name: "Шиномонтаж (1 колесо)", price: 5 },
-        { category: "tires", name: "Балансировка (1 колесо)", price: 3 },
+        { category: "tires", name: "Шиномонтаж (1 колесо)", price: 5, durationMinutes: 15 },
+        { category: "tires", name: "Балансировка (1 колесо)", price: 3, durationMinutes: 10 },
       ],
     },
     {
       email: "detailing.osh@scalup.kg",
       businessName: "Detailing Osh Pro",
       city: "Бишкек",
+      district: "Асанбай",
       categories: ["detailing"],
       description: "Профессиональный детейлинг и химчистка салона.",
       verified: false,
       services: [
-        { category: "detailing", name: "Химчистка салона", price: 45 },
-        { category: "detailing", name: "Полировка кузова", price: 60 },
+        { category: "detailing", name: "Химчистка салона", price: 45, durationMinutes: 120 },
+        { category: "detailing", name: "Полировка кузова", price: 60, durationMinutes: 180 },
+      ],
+    },
+    {
+      email: "airco.alamedin@scalup.kg",
+      businessName: "КлиматСервис Аламедин",
+      city: "Бишкек",
+      district: "Аламедин",
+      categories: ["ac", "diagnostics"],
+      description: "Заправка и ремонт автокондиционеров, диагностика системы охлаждения.",
+      verified: true,
+      services: [
+        { category: "ac", name: "Заправка кондиционера", price: 18, durationMinutes: 40 },
+        { category: "ac", name: "Диагностика кондиционера", price: 8, durationMinutes: 30 },
       ],
     },
   ];
@@ -111,12 +128,13 @@ async function main() {
 
     const provider = await prisma.provider.upsert({
       where: { userId: user.id },
-      update: {},
+      update: { district: p.district },
       create: {
         userId: user.id,
         businessName: p.businessName,
         description: p.description,
         city: p.city,
+        district: p.district,
         categories: p.categories,
         verified: p.verified,
         mobileService: p.mobileService ?? false,
@@ -124,9 +142,13 @@ async function main() {
     });
 
     for (const s of p.services) {
-      const exists = await prisma.service.findFirst({ where: { providerId: provider.id, name: s.name } });
-      if (!exists) {
-        await prisma.service.create({ data: { providerId: provider.id, category: s.category, name: s.name, price: s.price } });
+      const existing = await prisma.service.findFirst({ where: { providerId: provider.id, name: s.name } });
+      if (!existing) {
+        await prisma.service.create({
+          data: { providerId: provider.id, category: s.category, name: s.name, price: s.price, durationMinutes: s.durationMinutes },
+        });
+      } else if (existing.durationMinutes === null) {
+        await prisma.service.update({ where: { id: existing.id }, data: { durationMinutes: s.durationMinutes } });
       }
     }
   }

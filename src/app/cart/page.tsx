@@ -13,7 +13,7 @@ const inputClass =
 
 export default function CartPage() {
   const { items, removeItem, updateQty, total, clear } = useCart();
-  const { car } = useGarage();
+  const { selectedVehicle } = useGarage();
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: "", phone: "", comment: "" });
   const [method, setMethod] = useState<FulfillMethod>("pickup");
@@ -140,9 +140,9 @@ export default function CartPage() {
 
           <div>
             <label className="block text-sm font-bold text-cream/75 mb-1.5">Автомобиль</label>
-            {car ? (
+            {selectedVehicle ? (
               <div className="rounded-xl border border-cream/10 bg-surface-light px-3.5 py-2.5 text-sm text-cream">
-                {car.brand} {car.model}, {car.year} г.
+                {selectedVehicle.brand} {selectedVehicle.model}, {selectedVehicle.year} г.
               </div>
             ) : (
               <Link href="/garage" className="block rounded-xl border border-dashed border-cream/15 px-3.5 py-2.5 text-sm text-sage-100 hover:bg-cream/5">

@@ -8,8 +8,14 @@ import { SERVICE_CATEGORY_LABELS } from "../../../lib/categories";
 
 export const dynamic = "force-dynamic";
 
-export default async function ProviderDetailPage({ params }: { params: Promise<{ id: string }> }) {
+interface Props {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ serviceId?: string }>;
+}
+
+export default async function ProviderDetailPage({ params, searchParams }: Props) {
   const { id } = await params;
+  const { serviceId } = await searchParams;
 
   const [provider, user] = await Promise.all([
     prisma.provider.findUnique({
@@ -145,6 +151,7 @@ export default async function ProviderDetailPage({ params }: { params: Promise<{
             <BookingForm
               services={provider.services.map((s) => ({ id: s.id, name: s.name, price: s.price.toString() }))}
               user={publicUser}
+              initialServiceId={serviceId}
             />
           ) : (
             <div className="rounded-2xl border border-cream/10 bg-surface-alt p-5 text-center text-sage-100">

@@ -29,10 +29,11 @@ export async function middleware(req: NextRequest) {
   if (pathname.startsWith("/admin")) return requireAuth(["ADMIN"]);
   if (pathname.startsWith("/dashboard")) return requireAuth(["PROVIDER"]);
   if (pathname.startsWith("/account")) return requireAuth(["CLIENT", "PROVIDER", "ADMIN"]);
+  if (pathname.startsWith("/garage")) return requireAuth(["CLIENT"]);
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/dashboard/:path*", "/account/:path*"],
+  matcher: ["/admin/:path*", "/dashboard/:path*", "/account/:path*", "/garage/:path*"],
 };
